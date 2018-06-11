@@ -13,7 +13,7 @@ No jogo de poker, uma mão consiste em cinco cartas que podem ser comparadas, da
 * **Straight flush** - todas as cartas são consecutivas e do mesmo naipe;
 * **Royal flush** - a sequência 10, Valete, Dama, Rei, Ás do mesmo naipe;
 
-##**Observações:**##
+### **Observações:**
 
 As cartas são, em ordem crescente de valor: 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete, Dama, Rei e Ás.
 
@@ -23,7 +23,7 @@ Se dois jogadores possuem a mesma mão, vence quem tiver a mão formada pelas ca
 
 Desenvolva um programa que, de acordo com as mãos dos de dois jogadores, informe qual deles é o vencedor.
 
-##Alguns exemplos de mãos e seus respectivos *Vencedor*es:##
+### Alguns exemplos de mãos e seus respectivos vencedores:
 
 **Ex. 1:**
 
