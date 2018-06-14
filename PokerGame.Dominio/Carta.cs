@@ -4,6 +4,7 @@ namespace PokerGame.Dominio
     {
         public int Valor { get; }
         public Naipes Naipe { get; }
+        public string HashDaCarta => $"{Valor}.{Naipe}";
 
         public Carta(int valor, Naipes naipe)
         {
