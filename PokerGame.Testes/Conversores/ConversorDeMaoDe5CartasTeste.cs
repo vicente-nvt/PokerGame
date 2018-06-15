@@ -5,7 +5,7 @@ using Xunit;
 
 namespace PokerGame.Testes
 {
-    public class ConversorDeMaoDeCartasTeste
+    public class ConversorDeMaoDe5CartasTeste
     {        
         [Fact]
         public void DeveConverterUmaMaoDe5CartasValidas()

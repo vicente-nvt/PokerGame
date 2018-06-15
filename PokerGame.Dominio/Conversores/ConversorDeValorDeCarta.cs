@@ -6,8 +6,7 @@ namespace PokerGame.Dominio
     public class ConversorDeValorDeCarta : IConversor<int, string>
     {
         private static readonly Dictionary<string, int> MapaDeValores = new Dictionary<string, int>()
-        {
-            { "1", 1 },
+        {            
             { "2", 2 },
             { "3", 3 },
             { "4", 4 },
