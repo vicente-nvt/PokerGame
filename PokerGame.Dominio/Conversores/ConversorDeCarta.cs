@@ -1,4 +1,4 @@
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Conversores
 {
     public class ConversorDeCarta : IConversor<Carta, string>
     {

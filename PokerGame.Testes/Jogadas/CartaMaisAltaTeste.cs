@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PokerGame.Dominio;
+using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Jogadas;
 using Xunit;
 
-namespace PokerGame.Testes
+namespace PokerGame.Testes.Jogadas
 {
     public class CartaMaisAltaTeste
     {
@@ -20,7 +23,7 @@ namespace PokerGame.Testes
                 CartaBuilder.UmaCarta().ComValor(valorDoAs).Construir()
             };
 
-            var cartaEncontrada = new CartaMaisAlta(maoDe5Cartas).Encontrar();
+            var cartaEncontrada = new CartaMaisAlta(maoDe5Cartas).Encontrar().First();
 
             Assert.Equal(cartaEsperada.Valor, cartaEncontrada.Valor);
         }        

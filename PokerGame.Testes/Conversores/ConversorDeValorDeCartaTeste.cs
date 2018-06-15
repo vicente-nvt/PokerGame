@@ -1,8 +1,8 @@
 ﻿using System;
-using PokerGame.Dominio;
+using PokerGame.Dominio.Conversores;
 using Xunit;
 
-namespace PokerGame.Testes
+namespace PokerGame.Testes.Conversores
 {
     public class ConversorDeValorDeCartaTeste
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Conversores
 {
     public class ConversorDeNaipe : IConversor<Naipes, string>
     {

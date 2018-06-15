@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using PokerGame.Dominio;
+using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Conversores;
 using Xunit;
 
-namespace PokerGame.Testes
+namespace PokerGame.Testes.Conversores
 {
     public class ConversorDeMaoDe5CartasTeste
     {        

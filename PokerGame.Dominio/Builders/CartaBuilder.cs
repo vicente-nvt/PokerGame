@@ -1,4 +1,4 @@
-﻿namespace PokerGame.Dominio
+﻿namespace PokerGame.Dominio.Builders
 {
     public class CartaBuilder
     {

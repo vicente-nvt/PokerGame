@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Conversores
 {
     public class ConversorDeMaoDe5Cartas : IConversor<List<Carta>, string>
     {

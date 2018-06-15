@@ -1,4 +1,6 @@
-﻿namespace PokerGame.Dominio
+﻿using PokerGame.Dominio.Conversores;
+
+namespace PokerGame.Dominio.Builders
 {
     public class ConversorDeCartaBuilder
     {

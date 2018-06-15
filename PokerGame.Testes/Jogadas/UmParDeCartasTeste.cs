@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using PokerGame.Dominio;
+using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Jogadas;
 using Xunit;
 
-namespace PokerGame.Testes
+namespace PokerGame.Testes.Jogadas
 {
     public class UmParDeCartasTeste
     {
@@ -38,6 +40,16 @@ namespace PokerGame.Testes
             var jogadaEncontradaNaMao = new UmParDeCartas(_maoDe5Cartas).JogadaEncontradaNaMao();
 
             Assert.True(jogadaEncontradaNaMao);
+        }
+
+        [Fact]
+        public void NaoDeveEncontrarUmParDeCartasNaMao()
+        {
+            _maoDe5Cartas[3] = CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Ouros).Construir();
+
+            var jogadaEncontradaNaMao = new UmParDeCartas(_maoDe5Cartas).JogadaEncontradaNaMao();
+
+            Assert.False(jogadaEncontradaNaMao);
         }
     }
 }

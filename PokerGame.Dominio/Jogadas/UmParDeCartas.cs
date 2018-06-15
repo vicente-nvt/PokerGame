@@ -1,23 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Jogadas
 {
-    public class UmParDeCartas : IJogada<List<Carta>>
+    public class UmParDeCartas : IJogada
+
     {
-        private readonly IList<Carta> _maoDe5cartas;
+        private readonly IList<Carta> _maoDe5Cartas;
 
         public UmParDeCartas(IList<Carta> maoDe5Cartas)
         {
-            _maoDe5cartas = maoDe5Cartas;
+            _maoDe5Cartas = maoDe5Cartas;
         }
 
         public List<Carta> Encontrar()
         {
             var _parDeCartas = new List<Carta>();
-            foreach (var carta in _maoDe5cartas)
+            foreach (var carta in _maoDe5Cartas)
             {
-                var cartaPar = _maoDe5cartas.FirstOrDefault(outraCarta => outraCarta.Valor == carta.Valor && outraCarta.HashDaCarta != carta.HashDaCarta);
+                var cartaPar = _maoDe5Cartas.FirstOrDefault(outraCarta => outraCarta.Valor == carta.Valor && outraCarta.HashDaCarta != carta.HashDaCarta);
 
                 if (cartaPar != null)
                 {

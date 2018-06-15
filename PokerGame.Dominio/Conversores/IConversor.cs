@@ -1,4 +1,4 @@
-﻿namespace PokerGame.Dominio
+﻿namespace PokerGame.Dominio.Conversores
 {
     public interface IConversor<out TTipoSaida, in TTipoEntrada>
     {

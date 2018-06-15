@@ -1,8 +1,10 @@
-﻿namespace PokerGame.Dominio
+﻿using System.Collections.Generic;
+
+namespace PokerGame.Dominio.Jogadas
 {
-    public interface IJogada<out T>
+    public interface IJogada
     {
-        T Encontrar();
+        List<Carta> Encontrar();
         bool JogadaEncontradaNaMao();
     }
 }

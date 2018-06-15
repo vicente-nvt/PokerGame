@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Jogadas
 {
-    public class CartaMaisAlta : IJogada<Carta>
+    public class CartaMaisAlta : IJogada
     {
         private readonly IList<Carta> _maoDe5Cartas;
 
@@ -12,9 +12,9 @@ namespace PokerGame.Dominio
             _maoDe5Cartas = maoDe5Cartas;
         }
 
-        public Carta Encontrar()
+        public List<Carta> Encontrar()
         {
-            return _maoDe5Cartas.OrderByDescending(carta => carta.Valor).First();
+            return new List<Carta>() { _maoDe5Cartas.OrderByDescending(carta => carta.Valor).First() };
         }
 
         public bool JogadaEncontradaNaMao() => Encontrar() != null;
