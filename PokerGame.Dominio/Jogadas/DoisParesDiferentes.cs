@@ -23,7 +23,7 @@ namespace PokerGame.Dominio.Jogadas
                 if (outroPar != null && !doisPares.Contains(carta))
                 {
                     doisPares.Add(carta);
-                    doisPares.Add(outroPar);
+                    doisPares.Add(outroPar);                    
                 }
             }
 
