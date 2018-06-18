@@ -47,7 +47,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void JogadaNaoDeveSerEncontradaSeNaoHouverTrinca()
+        public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverTrinca()
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
 
@@ -57,7 +57,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void JogadaNaoDeveSerEncontradaSeAsOutrasDuasCartasForemIguais()
+        public void NaoDeveEncontrarAJogadaNaMaoSeAsOutrasDuasCartasForemIguais()
         {
             _maoDe5Cartas[4] = CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir();
 

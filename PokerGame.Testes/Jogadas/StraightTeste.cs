@@ -2,6 +2,7 @@
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Jogadas;
 using Xunit;
 
 namespace PokerGame.Testes.Jogadas
@@ -40,7 +41,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void DeveVerificarSeAJogadaFoiEncontradaNaMao()
+        public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
             var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas).JogadaEncontradaNaMao();
 
@@ -48,7 +49,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void JogadaNaoDeveSerEncontradaNaMaoSeASequenciaEstiverQuebrada()
+        public void NaoDeveEncontrarAJogadaNaMaoSeNaoForUmaSequencia()
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir();
 

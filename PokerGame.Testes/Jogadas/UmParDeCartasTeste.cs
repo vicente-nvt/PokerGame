@@ -43,7 +43,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void NaoDeveEncontrarUmParDeCartasNaMao()
+        public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverUmPar()
         {
             _maoDe5Cartas[3] = CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Ouros).Construir();
 

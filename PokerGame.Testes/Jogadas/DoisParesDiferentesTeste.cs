@@ -34,7 +34,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void DeveVerificarSeAJogadaFoiEncontradaNaMao()
+        public void DeveEncontrarAJogadaNaMao()
         {            
             var jogadaEncontradaNaMao = new DoisParesDiferentes(_maoDe5Cartas).JogadaEncontradaNaMao();
 
@@ -42,7 +42,7 @@ namespace PokerGame.Testes.Jogadas
         }
 
         [Fact]
-        public void NaoDeveEncontrarDoisParesDiferentesNaMao()
+        public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverDoisPares()
         {
             _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
 
