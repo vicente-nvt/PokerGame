@@ -15,20 +15,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public List<Carta> Encontrar()
         {
-            var _parDeCartas = new List<Carta>();
-            foreach (var carta in _maoDe5Cartas)
-            {
-                var cartaPar = _maoDe5Cartas.FirstOrDefault(outraCarta => outraCarta.Valor == carta.Valor && outraCarta.HashDaCarta != carta.HashDaCarta);
-
-                if (cartaPar != null)
-                {
-                    _parDeCartas.Add(carta);
-                    _parDeCartas.Add(cartaPar);                        
-                    break;
-                }
-            }
-
-            return _parDeCartas;
+            return new IdentificaDuasCartasComValoresIguais().IdentificarCartas(_maoDe5Cartas);
         }
 
         public bool JogadaEncontradaNaMao() => Encontrar().Count == 2;

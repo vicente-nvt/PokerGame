@@ -6,25 +6,27 @@ namespace PokerGame.Dominio.Jogadas
     public class DoisParesDiferentes : IJogada
     {
         private IList<Carta> _maoDe5Cartas;
+        private IIDentificadorDeCartas _identificadorDeCartas;
 
-        public DoisParesDiferentes(IList<Carta> maoDe5Cartas)
+        public DoisParesDiferentes(IList<Carta> maoDe5Cartas, IIDentificadorDeCartas identificadorDeCartas)
         {
             _maoDe5Cartas = maoDe5Cartas;
+            _identificadorDeCartas = identificadorDeCartas;
         }
 
         public List<Carta> Encontrar()
         {
+            var umPar = _identificadorDeCartas.IdentificarCartas(_maoDe5Cartas);
+            var restanteDaMao = _maoDe5Cartas.Where(carta => !umPar.Contains(carta)).ToList();
+            var outroPar = _identificadorDeCartas.IdentificarCartas(restanteDaMao);
+
+            var encontrouDoisPares = umPar.Count == 2 && outroPar.Count == 2;    
             var doisPares = new List<Carta>();
 
-            foreach (var carta in _maoDe5Cartas)
+            if (encontrouDoisPares)
             {
-                var outroPar = _maoDe5Cartas.FirstOrDefault(outraCarta => outraCarta.Valor == carta.Valor && outraCarta.HashDaCarta != carta.HashDaCarta);
-
-                if (outroPar != null && !doisPares.Contains(carta))
-                {
-                    doisPares.Add(carta);
-                    doisPares.Add(outroPar);                    
-                }
+                doisPares.AddRange(umPar);
+                doisPares.AddRange(outroPar);
             }
 
             return doisPares;

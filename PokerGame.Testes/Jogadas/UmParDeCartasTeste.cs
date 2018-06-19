@@ -14,7 +14,7 @@ namespace PokerGame.Testes.Jogadas
 
         public UmParDeCartasTeste()
         {
-            _maoDe5Cartas = new List<Carta>()
+            _maoDe5Cartas = new List<Carta>
             {
                 CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Ouros).Construir(),
                 CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir(),
@@ -27,7 +27,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarUmParDeCartasNaMao()
         {
-            var parEsperado = new string[] { "7.Espadas", "7.Ouros" };
+            var parEsperado = new[] { "7.Espadas", "7.Ouros" };
 
             var parEncontrado = new UmParDeCartas(_maoDe5Cartas).Encontrar().Select(carta => carta.HashDaCarta);
 

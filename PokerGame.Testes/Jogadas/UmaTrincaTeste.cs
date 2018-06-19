@@ -13,24 +13,24 @@ namespace PokerGame.Testes.Jogadas
 
         public UmaTrincaTeste()
         {
-            _maoDe5Cartas = new List<Carta>()
+            _maoDe5Cartas = new List<Carta>
             {
-                { CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Paus).Construir() },
-                { CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir() },
-                { CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir() },
-                { CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir() },
-                { CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Copas).Construir() },
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Paus).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir(),
+                CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Copas).Construir()
             };
         }
 
         [Fact]
         public void DeveEncontrarUmaTrincaNaMao()
         {
-            var trincaEsperada = new List<string>()
+            var trincaEsperada = new List<string>
             {
                 "5.Paus",
                 "5.Copas",
-                "5.Ouros",
+                "5.Ouros"
             };
 
             var trincaEncontrada = new UmaTrinca(_maoDe5Cartas).Encontrar().Select(carta => carta.HashDaCarta).ToList();

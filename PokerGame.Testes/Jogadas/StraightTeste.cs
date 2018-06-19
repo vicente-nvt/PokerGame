@@ -13,7 +13,7 @@ namespace PokerGame.Testes.Jogadas
 
         public StraightTeste()
         {
-            _maoDe5Cartas = new List<Carta>()
+            _maoDe5Cartas = new List<Carta>
             {
                 CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Paus).Construir() ,
                 CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Paus).Construir() ,
