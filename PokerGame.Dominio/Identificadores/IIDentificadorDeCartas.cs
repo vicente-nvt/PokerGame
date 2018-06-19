@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Identificadores
 {
     public interface IIDentificadorDeCartas
     {

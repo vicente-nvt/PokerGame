@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Identificadores;
 using Xunit;
 
-namespace PokerGame.Testes
+namespace PokerGame.Testes.Identificadores
 {
     public class IdentificaDuasCartasComValoresIguaisTeste
     {

@@ -2,6 +2,7 @@
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Identificadores;
 using PokerGame.Dominio.Jogadas;
 using Xunit;
 
@@ -10,9 +11,10 @@ namespace PokerGame.Testes.Jogadas
     public class StraightTeste
     {
         private List<Carta> _maoDe5Cartas;
+        private IIDentificadorDeCartas _identificadorDeSequencia;
 
         public StraightTeste()
-        {
+        {       
             _maoDe5Cartas = new List<Carta>
             {
                 CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Paus).Construir() ,
@@ -21,6 +23,8 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir() ,
                 CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Ouros).Construir()
             };
+
+            _identificadorDeSequencia = new IdentificaSequenciaDeCarta();
         }
 
         [Fact]
@@ -35,7 +39,7 @@ namespace PokerGame.Testes.Jogadas
                 "7.Ouros"
             };
 
-            var straightEncontrado = new Straight(_maoDe5Cartas).Encontrar().Select(carta => carta.HashDaCarta).ToList();
+            var straightEncontrado = new Straight(_maoDe5Cartas, _identificadorDeSequencia).Encontrar().Select(carta => carta.HashDaCarta).ToList();
             
             Assert.Equal(straightEsperado, straightEncontrado);
         }
@@ -43,7 +47,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas, _identificadorDeSequencia).JogadaEncontradaNaMao();
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -53,7 +57,7 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir();
 
-            var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas, _identificadorDeSequencia).JogadaEncontradaNaMao();
 
             Assert.False(jogadaEncontradaNaMao);
         }

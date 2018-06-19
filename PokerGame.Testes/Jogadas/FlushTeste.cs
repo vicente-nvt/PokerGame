@@ -2,6 +2,7 @@
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Identificadores;
 using PokerGame.Dominio.Jogadas;
 using Xunit;
 
@@ -10,6 +11,7 @@ namespace PokerGame.Testes.Jogadas
     public class FlushTeste
     {
         private IList<Carta> _maoDe5Cartas;
+        private IIDentificadorDeCartas _identificardorDeCincoNaipesIguais;
 
         public FlushTeste()
         {
@@ -21,6 +23,9 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir(),
                 CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Copas).Construir()
             };
+
+            _identificardorDeCincoNaipesIguais = new IdentificaCincoCartasComNaipesIguais();
+            ;
         }
 
         [Fact]
@@ -28,7 +33,8 @@ namespace PokerGame.Testes.Jogadas
         {
             var flushEsperado = new List<string> { "5.Copas", "8.Copas", "14.Copas", "10.Copas", "12.Copas" }.ToList();
 
-            var flushEncontrado = new Flush(_maoDe5Cartas).Encontrar().Select(carta => carta.HashDaCarta).ToList();
+            var flushEncontrado = new Flush(_maoDe5Cartas, _identificardorDeCincoNaipesIguais).Encontrar()
+                .Select(carta => carta.HashDaCarta).ToList();
 
             Assert.Equal(flushEsperado, flushEncontrado);
         }
@@ -36,7 +42,8 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao = new Flush(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao =
+                new Flush(_maoDe5Cartas, _identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao();
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -46,7 +53,8 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir();
 
-            var jogadaEncontradaNaMao = new Flush(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao =
+                new Flush(_maoDe5Cartas, _identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao();
 
             Assert.False(jogadaEncontradaNaMao);
         }

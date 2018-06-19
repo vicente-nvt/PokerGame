@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace PokerGame.Dominio
+namespace PokerGame.Dominio.Identificadores
 {
     public class IdentificaDuasCartasComValoresIguais : IIDentificadorDeCartas
     {

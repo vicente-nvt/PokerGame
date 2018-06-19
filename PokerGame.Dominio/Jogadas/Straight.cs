@@ -1,34 +1,22 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Jogadas
 {
     public class Straight : IJogada
     {
         private IList<Carta> _maoDe5Cartas;
+        private IIDentificadorDeCartas _identificadorDeSequencia;
 
-        public Straight(IList<Carta> maoDe5Cartas)
+        public Straight(IList<Carta> maoDe5Cartas, IIDentificadorDeCartas identificadorDeSequencia)
         {
             _maoDe5Cartas = maoDe5Cartas;
+            _identificadorDeSequencia = identificadorDeSequencia;
         }
 
         public List<Carta> Encontrar()
         {
-            var maoDe5CartasOrdenadaPorValor = _maoDe5Cartas.OrderBy(carta => carta.Valor).ToList();
-            var sequenciaQuebrada = false;
-
-            foreach (var carta in maoDe5CartasOrdenadaPorValor)
-            {             
-                var proximaCarta = maoDe5CartasOrdenadaPorValor.FirstOrDefault(outraCarta => outraCarta.Valor > carta.Valor);
-
-                if (proximaCarta != null && proximaCarta.Valor != carta.Valor + 1)
-                {
-                    sequenciaQuebrada = true;
-                    break;
-                }
-            }
-
-            return !sequenciaQuebrada ? maoDe5CartasOrdenadaPorValor : new List<Carta>();
+            return _identificadorDeSequencia.IdentificarCartas(_maoDe5Cartas);
         }
 
         public bool JogadaEncontradaNaMao() => Encontrar().Count == 5;
