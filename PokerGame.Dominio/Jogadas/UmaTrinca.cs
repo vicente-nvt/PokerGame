@@ -7,15 +7,19 @@ namespace PokerGame.Dominio.Jogadas
     public class UmaTrinca : IJogada
     {
         private IList<Carta> _maoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificadorDeTresCartasComValoresIguais;
 
-        public UmaTrinca(IList<Carta> maoDe5Cartas)
+        public UmaTrinca(IList<Carta> maoDe5Cartas,
+            IIDentificadorDeCartas identificadorDeTresCartasComValoresIguais)
         {
             _maoDe5Cartas = maoDe5Cartas;
+            _identificadorDeTresCartasComValoresIguais = identificadorDeTresCartasComValoresIguais;
         }
 
         public List<Carta> Encontrar()
         {
-            var trinca = new IdentificaTresCartasComValoresIguais().IdentificarCartas(_maoDe5Cartas);
+            
+            var trinca = _identificadorDeTresCartasComValoresIguais.IdentificarCartas(_maoDe5Cartas);
 
             var aMaoPossuiUmaTrinca = trinca.Count() == 3;            
             var aMaoPossuiDuasCartasDiferentesAlemDaTrinca = aMaoPossuiUmaTrinca && VerificarSeAMaoPossuiDuasCartasDiferentesAlemDaTrinca(trinca);

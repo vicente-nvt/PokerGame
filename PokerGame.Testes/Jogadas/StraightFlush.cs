@@ -12,7 +12,7 @@ namespace PokerGame.Testes.Jogadas
         private IIDentificadorDeCartas _identificadorDeSequencia;
 
         public StraightFlush(IList<Carta> maoDe5Cartas, IIDentificadorDeCartas identificadorDeNaipesIguais, 
-            IdentificaSequenciaDeCarta identificadorDeSequencia)
+            IIDentificadorDeCartas identificadorDeSequencia)
         {
             _maoDe5Cartas = maoDe5Cartas;
             _identificadorDeNaipesIguais = identificadorDeNaipesIguais;
