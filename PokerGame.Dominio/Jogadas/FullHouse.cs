@@ -6,21 +6,19 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class FullHouse : IJogada
     {
-        private List<Carta> _maoDe5Cartas;
-        private IIDentificadorDeCartas _identificadorDeTrinca;
-        private IIDentificadorDeCartas _identificadorDePar;
+        private readonly IIDentificadorDeCartas _identificadorDeTrinca;
+        private readonly IIDentificadorDeCartas _identificadorDePar;
 
-        public FullHouse(List<Carta> maoDe5Cartas, IIDentificadorDeCartas identificadorDeTrinca, IIDentificadorDeCartas identificadorDePar)
+        public FullHouse(IIDentificadorDeCartas identificadorDeTrinca, IIDentificadorDeCartas identificadorDePar)
         {
-            _maoDe5Cartas = maoDe5Cartas;
             _identificadorDeTrinca = identificadorDeTrinca;
             _identificadorDePar = identificadorDePar;
         }
 
-        public List<Carta> Encontrar()
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
-            var trinca = _identificadorDeTrinca.IdentificarCartas(_maoDe5Cartas);
-            var restanteDasCartas = _maoDe5Cartas.Where(carta => !trinca.Contains(carta)).ToList();
+            var trinca = _identificadorDeTrinca.IdentificarCartas(maoDe5Cartas);
+            var restanteDasCartas = maoDe5Cartas.Where(carta => !trinca.Contains(carta)).ToList();
             var par = _identificadorDePar.IdentificarCartas(restanteDasCartas);
 
             var fullHouse = new List<Carta>();
@@ -34,6 +32,9 @@ namespace PokerGame.Dominio.Jogadas
             return fullHouse;
         }
 
-        public bool JogadaEncontradaNaMao() => Encontrar().Count == 5;
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 5;
+
+        public string Nome => "Full House";
+        public int PontuacaoDaJogada => 106;
     }
 }

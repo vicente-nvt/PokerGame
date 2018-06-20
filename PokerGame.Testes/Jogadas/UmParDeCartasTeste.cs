@@ -2,6 +2,7 @@
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Identificadores;
 using PokerGame.Dominio.Jogadas;
 using Xunit;
 
@@ -11,6 +12,7 @@ namespace PokerGame.Testes.Jogadas
     {
 
         private readonly List<Carta> _maoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificadorDePar;
 
         public UmParDeCartasTeste()
         {
@@ -22,6 +24,7 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Ouros).Construir(),
                 CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Copas).Construir()
             };
+            _identificadorDePar = new IdentificaDuasCartasComValoresIguais();
         }
 
         [Fact]
@@ -29,7 +32,8 @@ namespace PokerGame.Testes.Jogadas
         {
             var parEsperado = new[] { "7.Espadas", "7.Ouros" };
 
-            var parEncontrado = new UmParDeCartas(_maoDe5Cartas).Encontrar().Select(carta => carta.HashDaCarta);
+            var parEncontrado = new UmParDeCartas(_identificadorDePar).Encontrar(_maoDe5Cartas)
+                .Select(carta => carta.HashDaCarta);
 
             Assert.Equal(parEsperado, parEncontrado);
         }
@@ -37,7 +41,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeAJogadaFoiEncontradaNaMao()
         {
-            var jogadaEncontradaNaMao = new UmParDeCartas(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new UmParDeCartas(_identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -47,7 +51,7 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[3] = CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Ouros).Construir();
 
-            var jogadaEncontradaNaMao = new UmParDeCartas(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new UmParDeCartas(_identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

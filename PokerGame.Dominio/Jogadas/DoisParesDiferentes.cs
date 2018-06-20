@@ -6,19 +6,17 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class DoisParesDiferentes : IJogada
     {
-        private IList<Carta> _maoDe5Cartas;
         private IIDentificadorDeCartas _identificadorDePares;
 
-        public DoisParesDiferentes(IList<Carta> maoDe5Cartas, IIDentificadorDeCartas identificadorDePares)
+        public DoisParesDiferentes(IIDentificadorDeCartas identificadorDePares)
         {
-            _maoDe5Cartas = maoDe5Cartas;
             _identificadorDePares = identificadorDePares;
         }
 
-        public List<Carta> Encontrar()
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
-            var umPar = _identificadorDePares.IdentificarCartas(_maoDe5Cartas);
-            var restanteDaMao = _maoDe5Cartas.Where(carta => !umPar.Contains(carta)).ToList();
+            var umPar = _identificadorDePares.IdentificarCartas(maoDe5Cartas);
+            var restanteDaMao = maoDe5Cartas.Where(carta => !umPar.Contains(carta)).ToList();
             var outroPar = _identificadorDePares.IdentificarCartas(restanteDaMao);
 
             var encontrouDoisPares = umPar.Count == 2 && outroPar.Count == 2;    
@@ -33,6 +31,9 @@ namespace PokerGame.Dominio.Jogadas
             return doisPares;
         }
 
-        public bool JogadaEncontradaNaMao() => Encontrar().Count == 4;
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 4;
+
+        public string Nome => "Dois Pares";
+        public int PontuacaoDaJogada => 102;
     }
 }

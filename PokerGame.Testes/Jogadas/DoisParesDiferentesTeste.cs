@@ -11,7 +11,7 @@ namespace PokerGame.Testes.Jogadas
     public class DoisParesDiferentesTeste
     {
         private readonly List<Carta> _maoDe5Cartas;
-        private IIDentificadorDeCartas _identificadorDeCartas;
+        private readonly IIDentificadorDeCartas _identificadorDePar;
 
         public DoisParesDiferentesTeste()
         {
@@ -23,15 +23,14 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Paus).Construir(),
                 CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Copas).Construir()
             };
-
-            _identificadorDeCartas = new IdentificaDuasCartasComValoresIguais();
+            _identificadorDePar = new IdentificaDuasCartasComValoresIguais();
         }
         [Fact]
         public void DeveEncontrarDoisParesDiferentesNaMao()
         {
             var doisParesEsperados = new List<string> { "5.Espadas", "5.Ouros", "9.Paus", "9.Copas" };            
 
-            var doisParesEncontrados = new DoisParesDiferentes(_maoDe5Cartas, _identificadorDeCartas).Encontrar()
+            var doisParesEncontrados = new DoisParesDiferentes(_identificadorDePar).Encontrar(_maoDe5Cartas)
                 .Select(carta => carta.HashDaCarta).ToList();
 
             Assert.Equal(doisParesEsperados, doisParesEncontrados);
@@ -41,7 +40,7 @@ namespace PokerGame.Testes.Jogadas
         public void DeveEncontrarAJogadaNaMao()
         {
             var jogadaEncontradaNaMao =
-                new DoisParesDiferentes(_maoDe5Cartas, _identificadorDeCartas).JogadaEncontradaNaMao();
+                new DoisParesDiferentes(_identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -52,7 +51,7 @@ namespace PokerGame.Testes.Jogadas
             _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
 
             var jogadaEncontradaNaMao =
-                new DoisParesDiferentes(_maoDe5Cartas, _identificadorDeCartas).JogadaEncontradaNaMao();
+                new DoisParesDiferentes(_identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

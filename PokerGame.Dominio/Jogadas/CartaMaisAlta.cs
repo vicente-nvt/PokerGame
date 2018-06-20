@@ -5,18 +5,14 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class CartaMaisAlta : IJogada
     {
-        private readonly IList<Carta> _maoDe5Cartas;
-
-        public CartaMaisAlta(IList<Carta> maoDe5Cartas)
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
-            _maoDe5Cartas = maoDe5Cartas;
+            return new List<Carta>() { maoDe5Cartas.OrderByDescending(carta => carta.Valor).First() };
         }
 
-        public List<Carta> Encontrar()
-        {
-            return new List<Carta>() { _maoDe5Cartas.OrderByDescending(carta => carta.Valor).First() };
-        }
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas) != null;
 
-        public bool JogadaEncontradaNaMao() => Encontrar() != null;
+        public string Nome => "Carta Mais Alta";
+        public int PontuacaoDaJogada => 100;
     }
 }

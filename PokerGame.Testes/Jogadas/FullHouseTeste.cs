@@ -34,8 +34,8 @@ namespace PokerGame.Testes.Jogadas
         {
             var fullHouseEsperado = new List<string> {"1.Copas", "1.Ouros", "1.Espadas", "2.Espadas", "2.Paus"};
 
-            var fullHouseEncontrado = new FullHouse(_maoDe5Cartas, _identificadorDeTrinca, _identificadorDePar)
-                .Encontrar().Select(carta => carta.HashDaCarta).ToList();
+            var fullHouseEncontrado = new FullHouse(_identificadorDeTrinca, _identificadorDePar)
+                .Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
             
             Assert.Equal(fullHouseEsperado, fullHouseEncontrado);
         }
@@ -43,8 +43,8 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao = new FullHouse(_maoDe5Cartas, _identificadorDeTrinca, _identificadorDePar)
-                .JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao =
+                new FullHouse(_identificadorDeTrinca, _identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -54,8 +54,8 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
 
-            var jogadaEncontradaNaMao = new FullHouse(_maoDe5Cartas, _identificadorDeTrinca, _identificadorDePar)
-                .JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao =
+                new FullHouse(_identificadorDeTrinca, _identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }
@@ -65,8 +65,8 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
 
-            var jogadaEncontradaNaMao = new FullHouse(_maoDe5Cartas, _identificadorDeTrinca, _identificadorDePar)
-                .JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao =
+                new FullHouse(_identificadorDeTrinca, _identificadorDePar).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

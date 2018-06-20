@@ -9,7 +9,7 @@ namespace PokerGame.Testes.Jogadas
 {
     public class QuadraTeste
     {
-        private IList<Carta> _maoDe5Cartas;
+        private readonly List<Carta> _maoDe5Cartas;
 
         public QuadraTeste()
         {
@@ -34,7 +34,7 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
             }.Select(carta => carta.HashDaCarta).ToList();
 
-            var quadraEncontrada = new Quadra(_maoDe5Cartas).Encontrar().Select(carta => carta.HashDaCarta).ToList();
+            var quadraEncontrada = new Quadra().Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
             
             Assert.Equal(quadraEsperada, quadraEncontrada);
         }
@@ -42,7 +42,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao = new Quadra(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new Quadra().JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -52,7 +52,7 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Ouros).Construir();
 
-            var jogadaEncontradaNaMao = new Quadra(_maoDe5Cartas).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new Quadra().JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
 using PokerGame.Dominio.Identificadores;
@@ -12,9 +10,9 @@ namespace PokerGame.Testes.Jogadas
 {
     public class RoyalFlushTeste
     {
-        private List<Carta> _maoDe5Cartas;
-        private IIDentificadorDeCartas _identificadorDeSequencia;
-        private IIDentificadorDeCartas _identificadorDeNaipesIguais;
+        private readonly List<Carta> _maoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificadorDeSequencia;
+        private readonly IIDentificadorDeCartas _identificadorDeNaipesIguais;
 
         public RoyalFlushTeste()
         {            
@@ -44,7 +42,7 @@ namespace PokerGame.Testes.Jogadas
             }.Select(carta => carta.HashDaCarta).ToList();
 
             var royalFlushEncontrado =
-                new RoyalFlush(_maoDe5Cartas, _identificadorDeSequencia, _identificadorDeNaipesIguais).Encontrar()
+                new RoyalFlush(_identificadorDeSequencia, _identificadorDeNaipesIguais).Encontrar(_maoDe5Cartas)
                     .Select(carta => carta.HashDaCarta).ToList();
             
             Assert.Equal(royalFlushEsperado, royalFlushEncontrado);
@@ -54,8 +52,8 @@ namespace PokerGame.Testes.Jogadas
         public void DeveEncontrarAJogadaNaMao()
         {
             var jogadaEncontradaNaMao =
-                new RoyalFlush(_maoDe5Cartas, _identificadorDeSequencia, _identificadorDeNaipesIguais)
-                    .JogadaEncontradaNaMao();
+                new RoyalFlush(_identificadorDeSequencia, _identificadorDeNaipesIguais).JogadaEncontradaNaMao(
+                    _maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -66,8 +64,8 @@ namespace PokerGame.Testes.Jogadas
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir();
 
             var jogadaEncontradaNaMao =
-                new RoyalFlush(_maoDe5Cartas, _identificadorDeSequencia, _identificadorDeNaipesIguais)
-                    .JogadaEncontradaNaMao();
+                new RoyalFlush(_identificadorDeSequencia, _identificadorDeNaipesIguais).JogadaEncontradaNaMao(
+                    _maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }
@@ -78,8 +76,8 @@ namespace PokerGame.Testes.Jogadas
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(13).ComNaipe(Naipes.Ouros).Construir();
 
             var jogadaEncontradaNaMao =
-                new RoyalFlush(_maoDe5Cartas, _identificadorDeSequencia, _identificadorDeNaipesIguais)
-                    .JogadaEncontradaNaMao();
+                new RoyalFlush(_identificadorDeSequencia, _identificadorDeNaipesIguais).JogadaEncontradaNaMao(
+                    _maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

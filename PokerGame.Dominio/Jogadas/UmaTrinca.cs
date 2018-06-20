@@ -6,37 +6,25 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class UmaTrinca : IJogada
     {
-        private IList<Carta> _maoDe5Cartas;
         private readonly IIDentificadorDeCartas _identificadorDeTresCartasComValoresIguais;
 
-        public UmaTrinca(IList<Carta> maoDe5Cartas,
-            IIDentificadorDeCartas identificadorDeTresCartasComValoresIguais)
+        public UmaTrinca(IIDentificadorDeCartas identificadorDeTresCartasComValoresIguais)
         {
-            _maoDe5Cartas = maoDe5Cartas;
             _identificadorDeTresCartasComValoresIguais = identificadorDeTresCartasComValoresIguais;
         }
 
-        public List<Carta> Encontrar()
-        {
-            
-            var trinca = _identificadorDeTresCartasComValoresIguais.IdentificarCartas(_maoDe5Cartas);
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
+        {            
+            var trinca = _identificadorDeTresCartasComValoresIguais.IdentificarCartas(maoDe5Cartas);
+            var aMaoPossuiUmaTrinca = trinca.Count() == 3;                        
 
-            var aMaoPossuiUmaTrinca = trinca.Count() == 3;            
-            var aMaoPossuiDuasCartasDiferentesAlemDaTrinca = aMaoPossuiUmaTrinca && VerificarSeAMaoPossuiDuasCartasDiferentesAlemDaTrinca(trinca);
-
-            return aMaoPossuiDuasCartasDiferentesAlemDaTrinca ? trinca : new List<Carta>();
+            return aMaoPossuiUmaTrinca ? trinca : new List<Carta>();
         }
 
-        private bool VerificarSeAMaoPossuiDuasCartasDiferentesAlemDaTrinca(List<Carta> trinca)
-        {
-            var outrasCartasAlemDaTrinca = _maoDe5Cartas.Where(carta => !trinca.Contains(carta)).ToArray();
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 3;
 
-            var temDuasCartasDiferentesNaMaoAlemDaTrinca = outrasCartasAlemDaTrinca.Count() == 2 && 
-                                                           outrasCartasAlemDaTrinca[0].Valor != outrasCartasAlemDaTrinca[1].Valor;
+        public string Nome => "Uma Trinca";
 
-            return temDuasCartasDiferentesNaMaoAlemDaTrinca;
-        }
-
-        public bool JogadaEncontradaNaMao() => Encontrar().Count == 3;
+        public int PontuacaoDaJogada => 103;
     }
 }

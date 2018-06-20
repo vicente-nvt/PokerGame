@@ -3,6 +3,7 @@ using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
 using PokerGame.Dominio.Identificadores;
+using PokerGame.Dominio.Jogadas;
 using Xunit;
 
 //Straight flush - todas as cartas são consecutivas e do mesmo naipe;
@@ -43,7 +44,7 @@ namespace PokerGame.Testes.Jogadas
             }.Select(carta => carta.HashDaCarta).ToList();
 
             var straightFlushEncontrado =
-                new StraightFlush(_maoDe5Cartas, _identificadorDeNaipesIguais, _identificadorDeSequencia).Encontrar()
+                new StraightFlush(_identificadorDeNaipesIguais, _identificadorDeSequencia).Encontrar(_maoDe5Cartas)
                     .Select(carta => carta.HashDaCarta).ToList();
 
             Assert.Equal(straightFlushEsperado, straightFlushEncontrado);
@@ -53,8 +54,8 @@ namespace PokerGame.Testes.Jogadas
         public void DeveEncontrarAJogadaNaMao()
         {
             var jogadaEncontradaNaMao =
-                new StraightFlush(_maoDe5Cartas, _identificadorDeNaipesIguais, _identificadorDeSequencia)
-                    .JogadaEncontradaNaMao();
+                new StraightFlush(_identificadorDeNaipesIguais, _identificadorDeSequencia)
+                    .JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -65,8 +66,8 @@ namespace PokerGame.Testes.Jogadas
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir();
 
             var jogadaEncontradaNaMao =
-                new StraightFlush(_maoDe5Cartas, _identificadorDeNaipesIguais, _identificadorDeSequencia)
-                    .JogadaEncontradaNaMao();
+                new StraightFlush(_identificadorDeNaipesIguais, _identificadorDeSequencia)
+                    .JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

@@ -4,20 +4,19 @@ using PokerGame.Dominio.Identificadores;
 namespace PokerGame.Dominio.Jogadas
 {
     public class UmParDeCartas : IJogada
-
     {
-        private readonly IList<Carta> _maoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificadorDePar;
 
-        public UmParDeCartas(IList<Carta> maoDe5Cartas)
+        public UmParDeCartas(IIDentificadorDeCartas identificadorDePar)
         {
-            _maoDe5Cartas = maoDe5Cartas;
+            _identificadorDePar = identificadorDePar;
         }
 
-        public List<Carta> Encontrar()
-        {
-            return new IdentificaDuasCartasComValoresIguais().IdentificarCartas(_maoDe5Cartas);
-        }
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas) => _identificadorDePar.IdentificarCartas(maoDe5Cartas);
 
-        public bool JogadaEncontradaNaMao() => Encontrar().Count == 2;
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 2;
+
+        public string Nome => "Um Par de Cartas";
+        public int PontuacaoDaJogada => 101;
     }
 }

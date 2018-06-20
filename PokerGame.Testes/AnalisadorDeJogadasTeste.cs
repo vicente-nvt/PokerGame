@@ -4,7 +4,6 @@ using System.Text;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Conversores;
 using PokerGame.Dominio.Identificadores;
-using PokerGame.Dominio.Jogadas;
 using PokerGame.Testes.Identificadores;
 using PokerGame.Testes.Jogadas;
 using Xunit;
@@ -13,15 +12,11 @@ namespace PokerGame.Testes
 {
     public class AnalisadorDeJogadasTeste
     {
-        private ConversorDeNaipe _conversorDeNaipes;
-        private ConversorDeValorDeCarta _conversorDeValorDeCarta;
-        private ConversorDeCarta _conversorDeCarta;
-        private ConversorDeMaoDe5Cartas _conversorDeMaoDe5Cartas;
-        private IIDentificadorDeCartas _identificadorDeNaipesIguais;
-        private IIDentificadorDeCartas _identificadorDeSequencia;
-        private IIDentificadorDeCartas _identificadorDeTrinca;
-        private IIDentificadorDeCartas _identificadorDePar;
-
+        private readonly ConversorDeMaoDe5Cartas _conversorDeMaoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificadorDeNaipesIguais;
+        private readonly IIDentificadorDeCartas _identificadorDeSequencia;
+        private readonly IIDentificadorDeCartas _identificadorDeTrinca;
+        private readonly IIDentificadorDeCartas _identificadorDePar;
 
         public AnalisadorDeJogadasTeste()
         {
@@ -29,67 +24,49 @@ namespace PokerGame.Testes
             _identificadorDeSequencia = new IdentificaSequenciaDeCarta();
             _identificadorDeTrinca = new IdentificaTresCartasComValoresIguais();
             _identificadorDePar = new IdentificaDuasCartasComValoresIguais();
-            _conversorDeNaipes = new ConversorDeNaipe();
-            _conversorDeValorDeCarta = new ConversorDeValorDeCarta();
-            _conversorDeCarta = new ConversorDeCarta(_conversorDeValorDeCarta, _conversorDeNaipes);
-            _conversorDeMaoDe5Cartas = new ConversorDeMaoDe5Cartas(_conversorDeCarta);
+
+            var conversorDeNaipes = new ConversorDeNaipe();
+            var conversorDeValorDeCarta = new ConversorDeValorDeCarta();
+            var conversorDeCarta = new ConversorDeCarta(conversorDeValorDeCarta, conversorDeNaipes);
+            _conversorDeMaoDe5Cartas = new ConversorDeMaoDe5Cartas(conversorDeCarta);
         }
 
         [Theory]
-        [InlineData("4D 6S 9H QH QC", Jogada.UmParDeCartas)]
-        public void DeveIdentificarAJogadaDaMao(string mao, Jogada jogadaEsperada)
+        [InlineData("4D 6S 9H TH QC", "Carta Mais Alta")]
+        [InlineData("4D 6S 9H QH QC", "Um Par de Cartas")]
+        [InlineData("6D 6S KS QH QC", "Dois Pares")]
+        [InlineData("4D 6S QS QH QC", "Uma Trinca")]
+        [InlineData("4D 5S 6H 7H 8C", "Straight")]
+        [InlineData("4C 6C 9C KC QC", "Flush")]
+        [InlineData("6D 6S QS QH QC", "Full House")]
+        [InlineData("4D 4S 4H QH 4C", "Quadra")]
+        [InlineData("4D 5D 6D 7D 8D", "Straight Flush")]
+        [InlineData("10S TS QS KS AS", "Royal Flush")]        
+        public void DeveIdentificarAJogadaDaMao(string mao, string nomeDaJogadaEsperada)
         {
-            IIDentificadorDeCartas identificadorDePar;
-            var jogadaEncontrada = new AnalisadorDeJogada(mao, _conversorDeMaoDe5Cartas, _identificadorDeNaipesIguais,
-                _identificadorDeSequencia, _identificadorDeTrinca, _identificadorDePar).Analisar();
+            var jogadaEncontrada = new AnalisadorDeJogada(_conversorDeMaoDe5Cartas, _identificadorDeSequencia,
+                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(mao);
 
-            Assert.Equal(jogadaEsperada, jogadaEncontrada);
-        }
-    }
-
-    public class AnalisadorDeJogada
-    {
-        private string _mao;
-        private IConversor<List<Carta>, string> _conversorDeMaoDe5Cartas;
-        private readonly IIDentificadorDeCartas _identificadorDeSequencia;
-        private readonly IIDentificadorDeCartas _identificadorDeNaipesIguais;
-        private IIDentificadorDeCartas _identificadorDeTrinca;
-        private IIDentificadorDeCartas _identificadorDePar;
-
-        public AnalisadorDeJogada(string mao, IConversor<List<Carta>, string> conversorDeMaoDe5Cartas, 
-            IIDentificadorDeCartas identificadorDeSequencia, 
-            IIDentificadorDeCartas identificadorDeNaipesIguais, 
-            IIDentificadorDeCartas identificadorDeTrinca, 
-            IIDentificadorDeCartas identificadorDePar)
-        {
-            _mao = mao;
-            _conversorDeMaoDe5Cartas = conversorDeMaoDe5Cartas;
-            _identificadorDeSequencia = identificadorDeSequencia;
-            _identificadorDeNaipesIguais = identificadorDeNaipesIguais;
-            _identificadorDeTrinca = identificadorDeTrinca;
-            _identificadorDePar = identificadorDePar;
+            Assert.Equal(nomeDaJogadaEsperada, jogadaEncontrada.Nome);
         }
 
-        public Jogada Analisar()
+        [Theory]
+        [InlineData("4D 6S 9H TH QC", 100)]
+        [InlineData("4D 6S 9H QH QC", 101)]
+        [InlineData("6D 6S KS QH QC", 102)]
+        [InlineData("4D 6S QS QH QC", 103)]
+        [InlineData("4D 5S 6H 7H 8C", 104)]
+        [InlineData("4C 6C 9C KC QC", 105)]
+        [InlineData("6D 6S QS QH QC", 106)]
+        [InlineData("4D 4S 4H QH 4C", 107)]
+        [InlineData("4D 5D 6D 7D 8D", 108)]
+        [InlineData("10S TS QS KS AS", 109)]
+        public void DeveValidarAPontuacaoDaJogadaDaMao(string mao, int pontuacaoDaJogadaEsperada)
         {
-            var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(_mao);
+            var jogadaEncontrada = new AnalisadorDeJogada(_conversorDeMaoDe5Cartas, _identificadorDeSequencia,
+                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(mao);
 
-            var listaDeJogadas = new List<IJogada>
-            {
-                new RoyalFlush(maoDeCartas, _identificadorDeSequencia, _identificadorDeNaipesIguais),
-                new StraightFlush(maoDeCartas, _identificadorDeNaipesIguais, _identificadorDeSequencia),
-                new Quadra(maoDeCartas),
-                new FullHouse(maoDeCartas, _identificadorDeTrinca, _identificadorDePar),
-                new Flush(maoDeCartas, _identificadorDeNaipesIguais),
-                new Straight(maoDeCartas, _identificadorDeSequencia),
-                new UmaTrinca(maoDeCartas, _identificadorDeTrinca),
-                new DoisParesDiferentes(maoDeCartas, _identificadorDePar),
-                new UmParDeCartas(maoDeCartas),
-                new CartaMaisAlta(maoDeCartas)
-            };
-
-
-            return new Jogada();
+            Assert.Equal(pontuacaoDaJogadaEsperada, jogadaEncontrada.PontuacaoDaJogada);
         }
     }
 }

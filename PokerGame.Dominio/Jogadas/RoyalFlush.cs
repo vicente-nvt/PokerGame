@@ -6,21 +6,19 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class RoyalFlush : IJogada
     {
-        private IList<Carta> _maoDe5cartas;
         private readonly IIDentificadorDeCartas _identificadorDeSequencia;
         private readonly IIDentificadorDeCartas _identificadorDeNaipesIguais;
 
-        public RoyalFlush(IList<Carta> maoDe5Cartas, IIDentificadorDeCartas identificadorDeSequencia, 
+        public RoyalFlush(IIDentificadorDeCartas identificadorDeSequencia, 
             IIDentificadorDeCartas identificadorDeNaipesIguais)
         {
-            _maoDe5cartas = maoDe5Cartas;
             _identificadorDeSequencia = identificadorDeSequencia;
             _identificadorDeNaipesIguais = identificadorDeNaipesIguais;
         }
 
-        public List<Carta> Encontrar()
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
-            var cartasDoMesmoNaipe = _identificadorDeNaipesIguais.IdentificarCartas(_maoDe5cartas);
+            var cartasDoMesmoNaipe = _identificadorDeNaipesIguais.IdentificarCartas(maoDe5Cartas);
             var sequenciaDeCartas = _identificadorDeSequencia.IdentificarCartas(cartasDoMesmoNaipe);
 
             var primeiraCartaDaSequencia = sequenciaDeCartas.FirstOrDefault();
@@ -30,6 +28,10 @@ namespace PokerGame.Dominio.Jogadas
             return primeiraCartaEhUmDez ? sequenciaDeCartas : new List<Carta>();
         }
 
-        public bool JogadaEncontradaNaMao() => Encontrar().Count == 5;
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 5;
+
+        public string Nome => "Royal Flush";
+
+        public int PontuacaoDaJogada => 109;
     }
 }

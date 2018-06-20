@@ -10,8 +10,8 @@ namespace PokerGame.Testes.Jogadas
 {
     public class FlushTeste
     {
-        private IList<Carta> _maoDe5Cartas;
-        private IIDentificadorDeCartas _identificardorDeCincoNaipesIguais;
+        private readonly List<Carta> _maoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificardorDeCincoNaipesIguais;
 
         public FlushTeste()
         {
@@ -33,7 +33,7 @@ namespace PokerGame.Testes.Jogadas
         {
             var flushEsperado = new List<string> { "5.Copas", "8.Copas", "14.Copas", "10.Copas", "12.Copas" }.ToList();
 
-            var flushEncontrado = new Flush(_maoDe5Cartas, _identificardorDeCincoNaipesIguais).Encontrar()
+            var flushEncontrado = new Flush(_identificardorDeCincoNaipesIguais).Encontrar(_maoDe5Cartas)
                 .Select(carta => carta.HashDaCarta).ToList();
 
             Assert.Equal(flushEsperado, flushEncontrado);
@@ -43,7 +43,7 @@ namespace PokerGame.Testes.Jogadas
         public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
             var jogadaEncontradaNaMao =
-                new Flush(_maoDe5Cartas, _identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao();
+                new Flush(_identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -54,7 +54,7 @@ namespace PokerGame.Testes.Jogadas
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir();
 
             var jogadaEncontradaNaMao =
-                new Flush(_maoDe5Cartas, _identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao();
+                new Flush(_identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

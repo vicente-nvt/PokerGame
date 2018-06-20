@@ -5,20 +5,13 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class Quadra : IJogada
     {
-        private IList<Carta> _maoDe5Cartas;
-
-        public Quadra(IList<Carta> maoDe5Cartas)
-        {
-            _maoDe5Cartas = maoDe5Cartas;
-        }
-
-        public List<Carta> Encontrar()
+        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
             var quadra = new List<Carta>();
 
-            foreach (var carta in _maoDe5Cartas)
+            foreach (var carta in maoDe5Cartas)
             {
-                var outrasTresCartasComMesmoValor = _maoDe5Cartas.Where(outraCarta =>
+                var outrasTresCartasComMesmoValor = maoDe5Cartas.Where(outraCarta =>
                     outraCarta.Valor == carta.Valor && outraCarta.HashDaCarta != carta.HashDaCarta).ToList();
 
                 if (outrasTresCartasComMesmoValor.Count == 3)
@@ -32,6 +25,9 @@ namespace PokerGame.Dominio.Jogadas
             return quadra;
         }
 
-        public bool JogadaEncontradaNaMao() => Encontrar().Count == 4;
+        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 4;
+
+        public string Nome => "Quadra";
+        public int PontuacaoDaJogada => 107;
     }
 }

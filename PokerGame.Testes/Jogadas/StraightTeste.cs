@@ -39,7 +39,8 @@ namespace PokerGame.Testes.Jogadas
                 "7.Ouros"
             };
 
-            var straightEncontrado = new Straight(_maoDe5Cartas, _identificadorDeSequencia).Encontrar().Select(carta => carta.HashDaCarta).ToList();
+            var straightEncontrado = new Straight(_identificadorDeSequencia).Encontrar(_maoDe5Cartas)
+                .Select(carta => carta.HashDaCarta).ToList();
             
             Assert.Equal(straightEsperado, straightEncontrado);
         }
@@ -47,7 +48,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas, _identificadorDeSequencia).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new Straight(_identificadorDeSequencia).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -57,7 +58,7 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir();
 
-            var jogadaEncontradaNaMao = new Straight(_maoDe5Cartas, _identificadorDeSequencia).JogadaEncontradaNaMao();
+            var jogadaEncontradaNaMao = new Straight(_identificadorDeSequencia).JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
         }

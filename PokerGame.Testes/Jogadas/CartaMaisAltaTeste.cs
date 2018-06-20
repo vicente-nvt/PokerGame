@@ -23,7 +23,7 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(valorDoAs).Construir()
             };
 
-            var cartaEncontrada = new CartaMaisAlta(maoDe5Cartas).Encontrar().First();
+            var cartaEncontrada = new CartaMaisAlta().Encontrar(maoDe5Cartas).First();
 
             Assert.Equal(cartaEsperada.Valor, cartaEncontrada.Valor);
         }        
