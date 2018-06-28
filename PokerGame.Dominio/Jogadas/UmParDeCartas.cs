@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Jogadas
@@ -9,7 +10,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public UmParDeCartas(IIDentificadorDeCartas identificadorDePar)
         {
-            _identificadorDePar = identificadorDePar;
+            _identificadorDePar = identificadorDePar;            
         }
 
         public List<Carta> Encontrar(List<Carta> maoDe5Cartas) => _identificadorDePar.IdentificarCartas(maoDe5Cartas);
@@ -17,6 +18,7 @@ namespace PokerGame.Dominio.Jogadas
         public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 2;
 
         public string Nome => "Um Par de Cartas";
+
         public int PontuacaoDaJogada => 101;
     }
 }

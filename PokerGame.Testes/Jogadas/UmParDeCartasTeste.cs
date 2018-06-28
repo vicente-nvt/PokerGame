@@ -13,7 +13,7 @@ namespace PokerGame.Testes.Jogadas
 
         private readonly List<Carta> _maoDe5Cartas;
         private readonly IIDentificadorDeCartas _identificadorDePar;
-
+        
         public UmParDeCartasTeste()
         {
             _maoDe5Cartas = new List<Carta>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using PokerGame.Dominio;
+﻿using PokerGame.Dominio;
 using PokerGame.Dominio.Conversores;
 using PokerGame.Dominio.Identificadores;
-using PokerGame.Testes.Identificadores;
-using PokerGame.Testes.Jogadas;
 using Xunit;
 
 namespace PokerGame.Testes
@@ -44,8 +39,9 @@ namespace PokerGame.Testes
         [InlineData("10S TS QS KS AS", "Royal Flush")]        
         public void DeveIdentificarAJogadaDaMao(string mao, string nomeDaJogadaEsperada)
         {
-            var jogadaEncontrada = new AnalisadorDeJogada(_conversorDeMaoDe5Cartas, _identificadorDeSequencia,
-                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(mao);
+            var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
+            var jogadaEncontrada = new AnalisadorDeJogada(_identificadorDeSequencia,
+                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(maoDeCartas);
 
             Assert.Equal(nomeDaJogadaEsperada, jogadaEncontrada.Nome);
         }
@@ -63,8 +59,9 @@ namespace PokerGame.Testes
         [InlineData("10S TS QS KS AS", 109)]
         public void DeveValidarAPontuacaoDaJogadaDaMao(string mao, int pontuacaoDaJogadaEsperada)
         {
-            var jogadaEncontrada = new AnalisadorDeJogada(_conversorDeMaoDe5Cartas, _identificadorDeSequencia,
-                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(mao);
+            var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
+            var jogadaEncontrada = new AnalisadorDeJogada(_identificadorDeSequencia,
+                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(maoDeCartas);
 
             Assert.Equal(pontuacaoDaJogadaEsperada, jogadaEncontrada.PontuacaoDaJogada);
         }
