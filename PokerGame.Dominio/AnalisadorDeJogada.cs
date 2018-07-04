@@ -9,10 +9,11 @@ namespace PokerGame.Dominio
     {
         private readonly List<IJogada> _listaDeJogadas;
 
-        public AnalisadorDeJogada(IIDentificadorDeCartas identificadorDeSequencia, 
-            IIDentificadorDeCartas identificadorDeNaipesIguais, 
-            IIDentificadorDeCartas identificadorDeTrinca, 
-            IIDentificadorDeCartas identificadorDePar)
+        public AnalisadorDeJogada(IIDentificadorDeCartas identificadorDeSequencia,
+            IIDentificadorDeCartas identificadorDeNaipesIguais,
+            IIDentificadorDeCartas identificadorDeTrinca,
+            IIDentificadorDeCartas identificadorDePar, 
+            IIDentificadorDeCartas identificadorDeCartaMaisAlta)
         {        
 
             _listaDeJogadas = new List<IJogada>
@@ -26,7 +27,7 @@ namespace PokerGame.Dominio
                 new UmaTrinca(identificadorDeTrinca),
                 new DoisParesDiferentes(identificadorDePar),
                 new UmParDeCartas(identificadorDePar),
-                new CartaMaisAlta()
+                new CartaMaisAlta(identificadorDeCartaMaisAlta)
             };
         }
 

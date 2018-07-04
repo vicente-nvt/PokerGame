@@ -6,7 +6,7 @@ using PokerGame.Dominio.Identificadores;
 using PokerGame.Dominio.RegrasDeDesempate;
 using Xunit;
 
-namespace PokerGame.Testes
+namespace PokerGame.Testes.RegrasDeDesempate
 {
     public class DesempateDeFullHouseTeste
     {

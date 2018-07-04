@@ -1,13 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Jogadas
 {
     public class CartaMaisAlta : IJogada
     {
+        private IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
+
+        public CartaMaisAlta(IIDentificadorDeCartas identificadorDeCartaMaisAlta)
+        {
+            _identificadorDeCartaMaisAlta = identificadorDeCartaMaisAlta;
+        }
+
         public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
-            return new List<Carta>() { maoDe5Cartas.OrderByDescending(carta => carta.Valor).First() };
+            return _identificadorDeCartaMaisAlta.IdentificarCartas(maoDe5Cartas);
         }
 
         public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas) != null;

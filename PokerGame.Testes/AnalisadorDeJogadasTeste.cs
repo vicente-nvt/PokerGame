@@ -12,6 +12,7 @@ namespace PokerGame.Testes
         private readonly IIDentificadorDeCartas _identificadorDeSequencia;
         private readonly IIDentificadorDeCartas _identificadorDeTrinca;
         private readonly IIDentificadorDeCartas _identificadorDePar;
+        private readonly IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
 
         public AnalisadorDeJogadasTeste()
         {
@@ -19,6 +20,7 @@ namespace PokerGame.Testes
             _identificadorDeSequencia = new IdentificaSequenciaDeCarta();
             _identificadorDeTrinca = new IdentificaTresCartasComValoresIguais();
             _identificadorDePar = new IdentificaDuasCartasComValoresIguais();
+            _identificadorDeCartaMaisAlta = new IdentificaCartaMaisAlta();            
 
             var conversorDeNaipes = new ConversorDeNaipe();
             var conversorDeValorDeCarta = new ConversorDeValorDeCarta();
@@ -41,8 +43,8 @@ namespace PokerGame.Testes
         {
             var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
 
-            var jogadaEncontrada = new AnalisadorDeJogada(_identificadorDeSequencia,
-                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(maoDeCartas);
+            var jogadaEncontrada = new AnalisadorDeJogada(_identificadorDeSequencia, _identificadorDeNaipesIguais,
+                _identificadorDeTrinca, _identificadorDePar, _identificadorDeCartaMaisAlta).Analisar(maoDeCartas);
 
             Assert.Equal(nomeDaJogadaEsperada, jogadaEncontrada.Nome);
         }
@@ -62,7 +64,8 @@ namespace PokerGame.Testes
         {
             var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
             var jogadaEncontrada = new AnalisadorDeJogada(_identificadorDeSequencia,
-                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(maoDeCartas);
+                _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar,
+                _identificadorDeCartaMaisAlta).Analisar(maoDeCartas);
 
             Assert.Equal(pontuacaoDaJogadaEsperada, jogadaEncontrada.PontuacaoDaJogada);
         }

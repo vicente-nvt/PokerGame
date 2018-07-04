@@ -2,6 +2,7 @@
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Identificadores;
 using PokerGame.Dominio.Jogadas;
 using Xunit;
 
@@ -13,7 +14,8 @@ namespace PokerGame.Testes.Jogadas
 
         public CartaMaisAltaTeste()
         {
-            _cartaMaisAlta = new CartaMaisAlta();
+            IIDentificadorDeCartas identificadorDeCartaMaisAlta = new IdentificaCartaMaisAlta();
+            _cartaMaisAlta = new CartaMaisAlta(identificadorDeCartaMaisAlta);
         }        
 
         [Fact]
