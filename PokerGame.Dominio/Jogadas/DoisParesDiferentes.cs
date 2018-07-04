@@ -34,6 +34,7 @@ namespace PokerGame.Dominio.Jogadas
         public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 4;
 
         public string Nome => "Dois Pares";
-        public int PontuacaoDaJogada => 102;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.DoisParesDiferentes;
     }
 }

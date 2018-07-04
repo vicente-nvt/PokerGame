@@ -18,6 +18,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public string Nome => "Straight";
 
-        public int PontuacaoDaJogada => 104;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.Straight;
     }
 }

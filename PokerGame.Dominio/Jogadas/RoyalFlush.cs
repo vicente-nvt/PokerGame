@@ -32,6 +32,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public string Nome => "Royal Flush";
 
-        public int PontuacaoDaJogada => 109;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.RoyalFlush;
     }
 }

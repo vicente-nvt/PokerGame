@@ -13,6 +13,7 @@ namespace PokerGame.Dominio.Jogadas
         public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas) != null;
 
         public string Nome => "Carta Mais Alta";
-        public int PontuacaoDaJogada => 100;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.CartaMaisAlta;
     }
 }

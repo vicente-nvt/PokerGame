@@ -9,6 +9,13 @@ namespace PokerGame.Testes.Jogadas
 {
     public class CartaMaisAltaTeste
     {
+        private readonly IJogada _cartaMaisAlta;
+
+        public CartaMaisAltaTeste()
+        {
+            _cartaMaisAlta = new CartaMaisAlta();
+        }        
+
         [Fact]
         public void DeveEncontrarOValorDaCartaMaisAltaDaMao()
         {
@@ -23,9 +30,19 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(valorDoAs).Construir()
             };
 
-            var cartaEncontrada = new CartaMaisAlta().Encontrar(maoDe5Cartas).First();
+            var cartaEncontrada = _cartaMaisAlta.Encontrar(maoDe5Cartas).First();
 
             Assert.Equal(cartaEsperada.Valor, cartaEncontrada.Valor);
-        }        
+        }
+
+        [Fact]
+        public void DeveInformarPontuacaoDaJogadaCorretamente()
+        {
+            const double pontuacaoEsperada = 100;
+
+            double pontuacaoEncontrada = _cartaMaisAlta.PontuacaoDaJogada;
+
+            Assert.Equal(pontuacaoEsperada, pontuacaoEncontrada);
+        }
     }
 }

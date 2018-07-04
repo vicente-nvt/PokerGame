@@ -40,6 +40,7 @@ namespace PokerGame.Testes
         public void DeveIdentificarAJogadaDaMao(string mao, string nomeDaJogadaEsperada)
         {
             var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
+
             var jogadaEncontrada = new AnalisadorDeJogada(_identificadorDeSequencia,
                 _identificadorDeNaipesIguais, _identificadorDeTrinca, _identificadorDePar).Analisar(maoDeCartas);
 

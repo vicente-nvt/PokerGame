@@ -19,6 +19,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public string Nome => "Um Par de Cartas";
 
-        public int PontuacaoDaJogada => 101;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.UmParDeCartas;
     }
 }

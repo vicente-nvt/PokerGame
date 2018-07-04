@@ -29,6 +29,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public string Nome => "Straight Flush";
 
-        public int PontuacaoDaJogada => 108;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.StraightFlush;
     }
 }

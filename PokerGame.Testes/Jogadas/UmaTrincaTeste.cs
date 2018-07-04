@@ -10,8 +10,9 @@ namespace PokerGame.Testes.Jogadas
 {
     public class UmaTrincaTeste
     {
-        private List<Carta> _maoDe5Cartas;
-        private IIDentificadorDeCartas _identificadorDeTresCartasComValoresIguais;
+        private readonly List<Carta> _maoDe5Cartas;
+        private readonly IIDentificadorDeCartas _identificadorDeTresCartasComValoresIguais;
+        private readonly IJogada _umaTrinca;
 
         public UmaTrincaTeste()
         {
@@ -23,7 +24,8 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir(),
                 CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Copas).Construir()
             };
-            _identificadorDeTresCartasComValoresIguais = new IdentificaTresCartasComValoresIguais();
+            var identificadorDeTresCartasComValoresIguais = new IdentificaTresCartasComValoresIguais();
+            _umaTrinca = new UmaTrinca(identificadorDeTresCartasComValoresIguais);
         }
 
         [Fact]
@@ -36,7 +38,7 @@ namespace PokerGame.Testes.Jogadas
                 "5.Ouros"
             };
 
-            var trincaEncontrada = new UmaTrinca(_identificadorDeTresCartasComValoresIguais).Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
+            var trincaEncontrada = _umaTrinca.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
 
             Assert.Equal(trincaEsperada, trincaEncontrada);
         }
@@ -44,7 +46,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeAJogadaFoiEncontradaNaMao()
         {
-            var jogadaEncontradaNaMao = new UmaTrinca(_identificadorDeTresCartasComValoresIguais).JogadaEncontradaNaMao(_maoDe5Cartas);
+            var jogadaEncontradaNaMao = _umaTrinca.JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -54,9 +56,19 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
 
-            var jogadaEncontradaNaMao = new UmaTrinca(_identificadorDeTresCartasComValoresIguais).JogadaEncontradaNaMao(_maoDe5Cartas);
+            var jogadaEncontradaNaMao = _umaTrinca.JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
+        }
+
+        [Fact]
+        public void DeveInformarPontuacaoDaJogadaCorretamente()
+        {
+            const double pontuacaoEsperada = 103;
+
+            double pontuacaoEncontrada = _umaTrinca.PontuacaoDaJogada;
+
+            Assert.Equal(pontuacaoEsperada, pontuacaoEncontrada);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace PokerGame.Testes.Jogadas
     {
         private List<Carta> _maoDe5Cartas;
         private IIDentificadorDeCartas _identificadorDeSequencia;
+        private readonly IJogada _straight;
 
         public StraightTeste()
         {       
@@ -24,7 +25,8 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Ouros).Construir()
             };
 
-            _identificadorDeSequencia = new IdentificaSequenciaDeCarta();
+            var identificadorDeSequencia = new IdentificaSequenciaDeCarta();
+            _straight = new Straight(identificadorDeSequencia);
         }
 
         [Fact]
@@ -39,7 +41,7 @@ namespace PokerGame.Testes.Jogadas
                 "7.Ouros"
             };
 
-            var straightEncontrado = new Straight(_identificadorDeSequencia).Encontrar(_maoDe5Cartas)
+            var straightEncontrado = _straight.Encontrar(_maoDe5Cartas)
                 .Select(carta => carta.HashDaCarta).ToList();
             
             Assert.Equal(straightEsperado, straightEncontrado);
@@ -48,7 +50,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao = new Straight(_identificadorDeSequencia).JogadaEncontradaNaMao(_maoDe5Cartas);
+            var jogadaEncontradaNaMao = _straight.JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -58,9 +60,19 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir();
 
-            var jogadaEncontradaNaMao = new Straight(_identificadorDeSequencia).JogadaEncontradaNaMao(_maoDe5Cartas);
+            var jogadaEncontradaNaMao = _straight.JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.False(jogadaEncontradaNaMao);
+        }
+
+        [Fact]
+        public void DeveInformarPontuacaoDaJogadaCorretamente()
+        {
+            const double pontuacaoEsperada = 104;
+
+            double pontuacaoEncontrada = _straight.PontuacaoDaJogada;
+
+            Assert.Equal(pontuacaoEsperada, pontuacaoEncontrada);
         }
     }
 }

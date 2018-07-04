@@ -5,7 +5,7 @@ using PokerGame.Dominio.Jogadas;
 
 namespace PokerGame.Dominio
 {
-    public class AnalisadorDeJogada
+    public class AnalisadorDeJogada : IAnalisadorDeJogada 
     {
         private readonly List<IJogada> _listaDeJogadas;
 

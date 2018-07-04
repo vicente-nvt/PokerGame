@@ -25,6 +25,7 @@ namespace PokerGame.Dominio.Jogadas
 
         public string Nome => "Uma Trinca";
 
-        public int PontuacaoDaJogada => 103;
+        public int PontuacaoDaJogada => (int) Jogada;
+        public Jogada Jogada => Jogada.UmaTrinca;
     }
 }

@@ -8,5 +8,6 @@ namespace PokerGame.Dominio.Jogadas
         bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas);
         string Nome { get; }
         int PontuacaoDaJogada { get; }
+        Jogada Jogada { get; }
     }
 }

@@ -11,7 +11,7 @@ namespace PokerGame.Testes.Jogadas
     public class FlushTeste
     {
         private readonly List<Carta> _maoDe5Cartas;
-        private readonly IIDentificadorDeCartas _identificardorDeCincoNaipesIguais;
+        private readonly IJogada _flush;
 
         public FlushTeste()
         {
@@ -24,8 +24,8 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Copas).Construir()
             };
 
-            _identificardorDeCincoNaipesIguais = new IdentificaCincoCartasComNaipesIguais();
-            ;
+            var identificardorDeCincoNaipesIguais = new IdentificaCincoCartasComNaipesIguais();
+            _flush = new Flush(identificardorDeCincoNaipesIguais);
         }
 
         [Fact]
@@ -33,8 +33,7 @@ namespace PokerGame.Testes.Jogadas
         {
             var flushEsperado = new List<string> { "5.Copas", "8.Copas", "14.Copas", "10.Copas", "12.Copas" }.ToList();
 
-            var flushEncontrado = new Flush(_identificardorDeCincoNaipesIguais).Encontrar(_maoDe5Cartas)
-                .Select(carta => carta.HashDaCarta).ToList();
+            var flushEncontrado = _flush.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
 
             Assert.Equal(flushEsperado, flushEncontrado);
         }
@@ -42,8 +41,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveVerificarSeEncontrouAJogadaNaMao()
         {
-            var jogadaEncontradaNaMao =
-                new Flush(_identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao(_maoDe5Cartas);
+            var jogadaEncontradaNaMao = _flush.JogadaEncontradaNaMao(_maoDe5Cartas);
 
             Assert.True(jogadaEncontradaNaMao);
         }
@@ -53,10 +51,19 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir();
 
-            var jogadaEncontradaNaMao =
-                new Flush(_identificardorDeCincoNaipesIguais).JogadaEncontradaNaMao(_maoDe5Cartas);
+            var jogadaEncontradaNaMao = _flush.JogadaEncontradaNaMao(_maoDe5Cartas); 
 
             Assert.False(jogadaEncontradaNaMao);
+        }
+
+        [Fact]
+        public void DeveInformarPontuacaoDaJogadaCorretamente()
+        {
+            const double pontuacaoEsperada = 105;
+
+            double pontuacaoEncontrada = _flush.PontuacaoDaJogada;
+
+            Assert.Equal(pontuacaoEsperada, pontuacaoEncontrada);
         }
     }
 }
