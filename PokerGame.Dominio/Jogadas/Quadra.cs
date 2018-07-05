@@ -1,28 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Jogadas
 {
     public class Quadra : IJogada
     {
+        private readonly IIDentificadorDeCartas _identificadorDeQuatroCartasComValoresIguais;
+
+        public Quadra(IIDentificadorDeCartas identificadorDeQuatroCartasComValoresIguais)
+        {
+            _identificadorDeQuatroCartasComValoresIguais = identificadorDeQuatroCartasComValoresIguais;
+        }
+
         public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
         {
-            var quadra = new List<Carta>();
-
-            foreach (var carta in maoDe5Cartas)
-            {
-                var outrasTresCartasComMesmoValor = maoDe5Cartas.Where(outraCarta =>
-                    outraCarta.Valor == carta.Valor && outraCarta.HashDaCarta != carta.HashDaCarta).ToList();
-
-                if (outrasTresCartasComMesmoValor.Count == 3)
-                {
-                    quadra.Add(carta);
-                    quadra.AddRange(outrasTresCartasComMesmoValor);
-                    break;
-                }
-            }
-
-            return quadra;
+            return _identificadorDeQuatroCartasComValoresIguais.IdentificarCartas(maoDe5Cartas);
         }
 
         public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 4;

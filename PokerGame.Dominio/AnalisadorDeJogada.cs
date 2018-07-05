@@ -12,15 +12,16 @@ namespace PokerGame.Dominio
         public AnalisadorDeJogada(IIDentificadorDeCartas identificadorDeSequencia,
             IIDentificadorDeCartas identificadorDeNaipesIguais,
             IIDentificadorDeCartas identificadorDeTrinca,
-            IIDentificadorDeCartas identificadorDePar, 
-            IIDentificadorDeCartas identificadorDeCartaMaisAlta)
+            IIDentificadorDeCartas identificadorDePar,
+            IIDentificadorDeCartas identificadorDeCartaMaisAlta,
+            IIDentificadorDeCartas identificadorDeQuatroCartasComValoresIguais)
         {        
 
             _listaDeJogadas = new List<IJogada>
             {
                 new RoyalFlush(identificadorDeSequencia, identificadorDeNaipesIguais),
                 new StraightFlush(identificadorDeNaipesIguais, identificadorDeSequencia),
-                new Quadra(),
+                new Quadra(identificadorDeQuatroCartasComValoresIguais),
                 new FullHouse(identificadorDeTrinca, identificadorDePar),
                 new Flush(identificadorDeNaipesIguais),
                 new Straight(identificadorDeSequencia),

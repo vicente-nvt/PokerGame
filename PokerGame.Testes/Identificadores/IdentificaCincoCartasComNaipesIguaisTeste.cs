@@ -41,6 +41,5 @@ namespace PokerGame.Testes.Identificadores
 
             Assert.False(todosOsNaipesSaoIguais);
         }
-
     }
 }

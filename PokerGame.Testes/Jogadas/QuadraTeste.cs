@@ -2,6 +2,7 @@
 using System.Linq;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
+using PokerGame.Dominio.Identificadores;
 using PokerGame.Dominio.Jogadas;
 using Xunit;
 
@@ -22,7 +23,8 @@ namespace PokerGame.Testes.Jogadas
                 CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
                 CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Ouros).Construir()
             };
-            _quadra = new Quadra();            
+            var identificadorDeQuatroCartasComValoresIguais = new IdentificaQuatroCartasComValoresIguais();
+            _quadra = new Quadra(identificadorDeQuatroCartasComValoresIguais);            
         }
 
         [Fact]

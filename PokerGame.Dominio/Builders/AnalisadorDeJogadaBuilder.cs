@@ -10,6 +10,7 @@ namespace PokerGame.Dominio.Builders
         private IdentificaSequenciaDeCarta _identificadorDeSequencia;
         private IdentificaCincoCartasComNaipesIguais _identificadorDeNaipes;
         private IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
+        private IIDentificadorDeCartas _identificadorDeQuatroCartasIguais;
 
         public static AnalisadorDeJogadaBuilder UmAnalisador()
         {
@@ -22,6 +23,11 @@ namespace PokerGame.Dominio.Builders
             return this;
         }
 
+        public AnalisadorDeJogadaBuilder ComIdentificadorDeQuatroCartasDefinido()
+        {
+            _identificadorDeQuatroCartasIguais = new IdentificaQuatroCartasComValoresIguais();
+            return this;
+        }
 
         public AnalisadorDeJogadaBuilder ComIdentificadorDeTrincaDefinido()
         {
@@ -50,7 +56,8 @@ namespace PokerGame.Dominio.Builders
         public AnalisadorDeJogada Construir()
         {
             return new AnalisadorDeJogada(_identificadorDeSequencia, _identificadorDeNaipes,
-                _identificadorDeTrinca, _identificadorDePar, _identificadorDeCartaMaisAlta);
+                _identificadorDeTrinca, _identificadorDePar, _identificadorDeCartaMaisAlta,
+                _identificadorDeQuatroCartasIguais);
         }
     }
 }
