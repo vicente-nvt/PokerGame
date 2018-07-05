@@ -17,7 +17,8 @@ namespace PokerGame.Dominio.RegrasDeDesempate
             {                
                 { Jogada.StraightFlush, new DesempateDeStraightFlush(identificadorDeCartaMaisAlta) },
                 { Jogada.Quadra, new DesempateDeQuadra(identificadorDeQuadra) },
-                { Jogada.FullHouse, new DesempateDeFullHouse(identificadorDeTrinca) }
+                { Jogada.FullHouse, new DesempateDeFullHouse(identificadorDeTrinca) },
+                { Jogada.Flush, new DesempateDeFlush(identificadorDeTrinca) }
             };
         }
 
