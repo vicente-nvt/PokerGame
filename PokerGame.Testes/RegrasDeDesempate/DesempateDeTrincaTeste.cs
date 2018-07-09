@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using PokerGame.Dominio;
 using PokerGame.Dominio.Builders;
 using PokerGame.Dominio.Identificadores;
+using PokerGame.Dominio.RegrasDeDesempate;
 using Xunit;
 
 namespace PokerGame.Testes.RegrasDeDesempate
@@ -14,7 +13,7 @@ namespace PokerGame.Testes.RegrasDeDesempate
         private List<Carta> _maoB;
         private readonly List<Carta> _maoA;
         private readonly IIDentificadorDeCartas _identificadorDeTrinca;
-        private IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
+        private readonly IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
 
         public DesempateDeTrincaTeste()
         {

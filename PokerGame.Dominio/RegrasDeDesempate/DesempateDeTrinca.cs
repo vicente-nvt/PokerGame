@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using PokerGame.Dominio;
 using PokerGame.Dominio.Identificadores;
-using PokerGame.Dominio.RegrasDeDesempate;
 
-namespace PokerGame.Testes.RegrasDeDesempate
+namespace PokerGame.Dominio.RegrasDeDesempate
 {
     public class DesempateDeTrinca : IRegraDeDesempate
     {
         private readonly IIDentificadorDeCartas _identificadorDeTrinca;
-        private IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
+        private readonly IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
 
         public DesempateDeTrinca(IIDentificadorDeCartas identificadorDeTrinca, IIDentificadorDeCartas identificadorDeCartaMaisAlta)
         {
