@@ -1,12 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Jogadas
 {
     public class CartaMaisAlta : IJogada
     {
-        private IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
+        private readonly IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
 
         public CartaMaisAlta(IIDentificadorDeCartas identificadorDeCartaMaisAlta)
         {

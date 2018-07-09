@@ -13,7 +13,7 @@ namespace PokerGame.Testes
         private readonly IIDentificadorDeCartas _identificadorDeTrinca;
         private readonly IIDentificadorDeCartas _identificadorDePar;
         private readonly IIDentificadorDeCartas _identificadorDeCartaMaisAlta;
-        private IIDentificadorDeCartas _identificadorDeQuatroCartas;
+        private readonly IIDentificadorDeCartas _identificadorDeQuatroCartas;
 
         public AnalisadorDeJogadasTeste()
         {
