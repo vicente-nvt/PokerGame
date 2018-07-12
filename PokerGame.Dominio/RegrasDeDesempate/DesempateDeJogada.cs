@@ -9,8 +9,9 @@ namespace PokerGame.Dominio.RegrasDeDesempate
         private readonly Dictionary<Jogada, IRegraDeDesempate> _dicionarioDeDesempate;
 
         public DesempateDeJogada(IIDentificadorDeCartas identificadorDeTrinca,
-            IIDentificadorDeCartas identificadorDeCartaMaisAlta, 
-            IIDentificadorDeCartas identificadorDeQuadra)
+            IIDentificadorDeCartas identificadorDeCartaMaisAlta,
+            IIDentificadorDeCartas identificadorDeQuadra, 
+            IIDentificadorDeCartas identificadorDePar)
         {          
 
             _dicionarioDeDesempate = new Dictionary<Jogada, IRegraDeDesempate>
@@ -18,7 +19,10 @@ namespace PokerGame.Dominio.RegrasDeDesempate
                 { Jogada.StraightFlush, new DesempateDeStraightFlush(identificadorDeCartaMaisAlta) },
                 { Jogada.Quadra, new DesempateDeQuadra(identificadorDeQuadra) },
                 { Jogada.FullHouse, new DesempateDeFullHouse(identificadorDeTrinca) },
-                { Jogada.Flush, new DesempateDeFlush(identificadorDeTrinca) }
+                { Jogada.Flush, new DesempateDeFlush(identificadorDeTrinca) },
+                { Jogada.Straight, new DesempateDeStraight(identificadorDeCartaMaisAlta) },
+                { Jogada.UmaTrinca, new DesempateDeTrinca(identificadorDeTrinca, identificadorDeCartaMaisAlta) },
+                { Jogada.DoisParesDiferentes, new DesempateDeDoisPares(identificadorDePar) }
             };
         }
 
