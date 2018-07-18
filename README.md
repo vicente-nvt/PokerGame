@@ -21,7 +21,7 @@ Os naipes são: Ouros (D - Diamonds), Copa (H - Hearts), Espadas (S - Spades) e 
 
 Se dois jogadores possuem a mesma mão, vence quem tiver a mão formada pelas cartas de maior valor.
 
-Desenvolva um programa que, de acordo com as mãos dos de dois jogadores, informe qual deles é o vencedor.
+Desenvolva um programa que, de acordo com as mãos de dois jogadores, informe qual deles é o vencedor.
 
 ### Alguns exemplos de mãos e seus respectivos vencedores:
 
