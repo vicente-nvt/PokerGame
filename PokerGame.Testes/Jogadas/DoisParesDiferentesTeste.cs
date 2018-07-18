@@ -17,11 +17,11 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Hearts).Construir()
             };
             var identificadorDePar = new IdentificaDuasCartasComValoresIguais();
             _doisParesDiferentes = new DoisParesDiferentes(identificadorDePar);
@@ -29,7 +29,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarDoisParesDiferentesNaMao()
         {
-            var doisParesEsperados = new List<string> { "5.Espadas", "5.Ouros", "9.Paus", "9.Copas" };            
+            var doisParesEsperados = new List<string> { "5.Spades", "5.Diamonds", "9.Clubs", "9.Hearts" };            
 
             var doisParesEncontrados = _doisParesDiferentes.Encontrar(_maoDe5Cartas)
                 .Select(carta => carta.HashDaCarta).ToList();
@@ -48,7 +48,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverDoisPares()
         {
-            _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
+            _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Hearts).Construir();
 
             var jogadaEncontradaNaMao =
                 _doisParesDiferentes.JogadaEncontradaNaMao(_maoDe5Cartas);

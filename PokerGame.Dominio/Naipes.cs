@@ -2,9 +2,9 @@ namespace PokerGame.Dominio
 {
     public enum Naipes
     {
-        Ouros,
-        Copas,
-        Espadas,
-        Paus
+        Diamonds,
+        Hearts,
+        Spades,
+        Clubs
     }
 }

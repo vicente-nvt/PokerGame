@@ -18,19 +18,19 @@ namespace PokerGame.Testes.RegrasDeDesempate
         {
             _maoA = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Ouros).Construir()
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Diamonds).Construir()
             };
             _maoB = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Paus).Construir()
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Clubs).Construir()
             };
             IIDentificadorDeCartas identificadorDeCartaMaisAlta = new IdentificaCartaMaisAlta();
             _desempateDeCartaMaisAlta = new DesempateDeCartaMaisAlta(identificadorDeCartaMaisAlta);
@@ -50,7 +50,7 @@ namespace PokerGame.Testes.RegrasDeDesempate
         [Fact]
         public void NaoDeveDesempatarEntreCartasMaisAltasEmMaosIguais()
         {
-            _maoB[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Ouros).Construir();
+            _maoB[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Diamonds).Construir();
 
             var jogadaVencedoraEncontrada = _desempateDeCartaMaisAlta.Desempatar(_maoA, _maoB);
 

@@ -16,7 +16,6 @@ namespace PokerGame.Dominio
             IIDentificadorDeCartas identificadorDeCartaMaisAlta,
             IIDentificadorDeCartas identificadorDeQuatroCartasComValoresIguais)
         {        
-
             _listaDeJogadas = new List<IJogada>
             {
                 new RoyalFlush(identificadorDeSequencia, identificadorDeNaipesIguais),
@@ -32,9 +31,8 @@ namespace PokerGame.Dominio
             };
         }
 
-        public IJogada Analisar(List<Carta> maoDeCartas)
-        {
-            return _listaDeJogadas.FirstOrDefault(jogada => jogada.JogadaEncontradaNaMao(maoDeCartas));
-        }
+        public IJogada Analisar(List<Carta> maoDeCartas) =>
+            _listaDeJogadas.FirstOrDefault(jogada => jogada.JogadaEncontradaNaMao(maoDeCartas));
+
     }
 }

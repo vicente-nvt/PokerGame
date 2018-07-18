@@ -17,11 +17,11 @@ namespace PokerGame.Testes.Jogadas
         {            
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Hearts).Construir(),
             };
 
             var identificadorDeNaipesIguais = new IdentificaCincoCartasComNaipesIguais();
@@ -34,11 +34,11 @@ namespace PokerGame.Testes.Jogadas
         {
             var straightFlushEsperado = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Copas).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Hearts).Construir(),
             }.Select(carta => carta.HashDaCarta).ToList();
 
             var straightFlushEncontrado = _straightFlush.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
@@ -57,7 +57,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoQuandoASequenciaEstiverQuebrada()
         {
-            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir();
+            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Hearts).Construir();
 
             var jogadaEncontradaNaMao = _straightFlush.JogadaEncontradaNaMao(_maoDe5Cartas);
 

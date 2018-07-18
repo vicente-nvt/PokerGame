@@ -22,7 +22,7 @@ namespace PokerGame.Testes.Jogadas
         public void DeveEncontrarOValorDaCartaMaisAltaDaMao()
         {
             const int valorDoAs = 14;
-            var cartaEsperada = CartaBuilder.UmaCarta().ComValor(valorDoAs).ComNaipe(Naipes.Espadas).Construir();
+            var cartaEsperada = CartaBuilder.UmaCarta().ComValor(valorDoAs).ComNaipe(Naipes.Spades).Construir();
             var maoDe5Cartas = new List<Carta>
             {
                 CartaBuilder.UmaCarta().ComValor(1).Construir(),

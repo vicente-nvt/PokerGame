@@ -21,19 +21,19 @@ namespace PokerGame.Testes.RegrasDeDesempate
 
             _maoA = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Ouros).Construir()
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Diamonds).Construir()
             };
             _maoB = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Paus).Construir()
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Clubs).Construir()
             };
         }
 

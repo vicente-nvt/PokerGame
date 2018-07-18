@@ -15,11 +15,11 @@ namespace PokerGame.Testes.Conversores
             const string maoDe5Cartas = "4D 6S 9H QH QC";
             var maoDe5CartasEsperada = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Paus).Construir()
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Clubs).Construir()
             }.Select(cartas => cartas.HashDaCarta);
             var conversorDeCarta = ConversorDeCartaBuilder.UmConversor()
                 .ComConversorDeValorDeCarta(new ConversorDeValorDeCarta())

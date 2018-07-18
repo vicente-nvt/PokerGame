@@ -8,9 +8,9 @@ namespace PokerGame.Testes.Conversores
     public class ConversorDeCartasTeste
     {
         [Theory]
-        [InlineData("5S", 5, Naipes.Espadas )]  
-        [InlineData("TD", 10, Naipes.Ouros)]
-        [InlineData("AH", 14, Naipes.Copas)]        
+        [InlineData("5S", 5, Naipes.Spades )]  
+        [InlineData("TD", 10, Naipes.Diamonds)]
+        [InlineData("AH", 14, Naipes.Hearts)]        
         public void DeveConverterUmaCartaValida(string cartaDeEntrada, int valor, Naipes naipe)
         {
             var cartaEsperada = CartaBuilder.UmaCarta().ComNaipe(naipe).ComValor(valor).Construir();

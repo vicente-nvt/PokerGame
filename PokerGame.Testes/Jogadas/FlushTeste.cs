@@ -17,11 +17,11 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(12).ComNaipe(Naipes.Hearts).Construir()
             };
 
             var identificardorDeCincoNaipesIguais = new IdentificaCincoCartasComNaipesIguais();
@@ -31,7 +31,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarUmFlushNaMao()
         {
-            var flushEsperado = new List<string> { "5.Copas", "8.Copas", "14.Copas", "10.Copas", "12.Copas" }.ToList();
+            var flushEsperado = new List<string> { "5.Hearts", "8.Hearts", "14.Hearts", "10.Hearts", "12.Hearts" }.ToList();
 
             var flushEncontrado = _flush.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
 
@@ -49,7 +49,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoSeAlgumaCartaForDeNaipeDiferente()
         {
-            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir();
+            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Diamonds).Construir();
 
             var jogadaEncontradaNaMao = _flush.JogadaEncontradaNaMao(_maoDe5Cartas); 
 

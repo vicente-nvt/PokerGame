@@ -8,10 +8,10 @@ namespace PokerGame.Dominio.Conversores
 
         private static readonly Dictionary<string, Naipes> MapaDeNaipes = new Dictionary<string, Naipes>()
         {
-            { "D", Naipes.Ouros },
-            { "H", Naipes.Copas },
-            { "S", Naipes.Espadas },
-            { "C", Naipes.Paus }
+            { "D", Naipes.Diamonds },
+            { "H", Naipes.Hearts },
+            { "S", Naipes.Spades },
+            { "C", Naipes.Clubs }
         };
 
         public Naipes Converter(string naipe)

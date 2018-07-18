@@ -15,9 +15,9 @@ No jogo de poker, uma mão consiste em cinco cartas que podem ser comparadas, da
 
 ### **Observações:**
 
-As cartas são, em ordem crescente de valor: 2, 3, 4, 5, 6, 7, 8, 9, 10, Valete, Dama, Rei e Ás.
+As cartas são, em ordem crescente de valor: 2, 3, 4, 5, 6, 7, 8, 9, 10 (T), Valete (J), Dama (Q), Rei (K) e Ás (A).
 
-Os naipes são: Ouro (D), Copa (H), Espadas (S) e Paus (C).
+Os naipes são: Ouros (D - Diamonds), Copa (H - Hearts), Espadas (S - Spades) e Paus (C - Clubs).
 
 Se dois jogadores possuem a mesma mão, vence quem tiver a mão formada pelas cartas de maior valor.
 

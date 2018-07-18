@@ -19,19 +19,19 @@ namespace PokerGame.Testes.RegrasDeDesempate
             _identificadorDeCartaMaisAlta = new IdentificaCartaMaisAlta();
             _maoA = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Espadas).Construir()
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Spades).Construir()
             };
             _maoB = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Hearts).Construir()
             };
 
         }

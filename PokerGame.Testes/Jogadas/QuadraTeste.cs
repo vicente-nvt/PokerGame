@@ -17,11 +17,11 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Ouros).Construir()
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Diamonds).Construir()
             };
             var identificadorDeQuatroCartasComValoresIguais = new IdentificaQuatroCartasComValoresIguais();
             _quadra = new Quadra(identificadorDeQuatroCartasComValoresIguais);            
@@ -32,10 +32,10 @@ namespace PokerGame.Testes.Jogadas
         {
             var quadraEsperada = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
             }.Select(carta => carta.HashDaCarta).ToList();
 
             var quadraEncontrada = _quadra.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
@@ -54,7 +54,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverUmaQuadra()
         {
-            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Ouros).Construir();
+            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Diamonds).Construir();
 
             var jogadaEncontradaNaMao = _quadra.JogadaEncontradaNaMao(_maoDe5Cartas);
 

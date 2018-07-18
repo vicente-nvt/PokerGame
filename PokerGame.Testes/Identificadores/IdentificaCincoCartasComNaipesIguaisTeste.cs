@@ -14,11 +14,11 @@ namespace PokerGame.Testes.Identificadores
         {
             _listaDeCartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Hearts).Construir()
             };
         }
 
@@ -34,7 +34,7 @@ namespace PokerGame.Testes.Identificadores
         [Fact]
         public void NaoDeveIndetificarSeUmNaipeForDiferente()
         {
-            _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir();
+            _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir();
 
             var todosOsNaipesSaoIguais =
                 new IdentificaCincoCartasComNaipesIguais().IdentificarCartas(_listaDeCartas).Count == 5;

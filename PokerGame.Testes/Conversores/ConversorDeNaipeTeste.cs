@@ -8,10 +8,10 @@ namespace PokerGame.Testes.Conversores
     public class ConversorDeNaipeTeste
     {
         [Theory]
-        [InlineData("S", Naipes.Espadas)]
-        [InlineData("H", Naipes.Copas)]
-        [InlineData("D", Naipes.Ouros)]
-        [InlineData("C", Naipes.Paus)]
+        [InlineData("S", Naipes.Spades)]
+        [InlineData("H", Naipes.Hearts)]
+        [InlineData("D", Naipes.Diamonds)]
+        [InlineData("C", Naipes.Clubs)]
         public void DeveConverterUmNaipeExistente(string naipeParaConverter, Naipes naipeEsperado)
         {
             var naipeConvertido = new ConversorDeNaipe().Converter(naipeParaConverter);

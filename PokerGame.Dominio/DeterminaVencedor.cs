@@ -30,6 +30,12 @@ namespace PokerGame.Dominio
             if (jogadaJogadorA.Jogada != jogadaJogadorB.Jogada)
                 return jogadaJogadorA.PontuacaoDaJogada > jogadaJogadorB.PontuacaoDaJogada ? jogadorA.Nome : jogadorB.Nome;
 
+            return Desempatar(jogadorA, jogadorB, maoJogadorA, jogadaJogadorA, maoJogadorB);
+        }
+
+        private string Desempatar(Jogador jogadorA, Jogador jogadorB, List<Carta> maoJogadorA, Jogadas.IJogada jogadaJogadorA, 
+            List<Carta> maoJogadorB)
+        {
             var maoVencedoraNoDesempate =
                 _desempateDeJogada.Desempatar(jogadaJogadorA.Jogada, maoJogadorA, maoJogadorB);
 

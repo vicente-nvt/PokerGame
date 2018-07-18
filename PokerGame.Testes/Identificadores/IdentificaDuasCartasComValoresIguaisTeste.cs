@@ -16,17 +16,17 @@ namespace PokerGame.Testes.Identificadores
         {
             _listaDeCartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Ouros).Construir()
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Diamonds).Construir()
             };
 
             _duasCartasEsperadas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Ouros).Construir()                
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Diamonds).Construir()                
             };
         }
 
@@ -44,7 +44,7 @@ namespace PokerGame.Testes.Identificadores
         [Fact]
         public void NaoDeveEncontrarDuasCartasIguais()
         {
-            _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir();
+            _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Diamonds).Construir();
             var duasCartasEsperadas = _duasCartasEsperadas.Select(carta => carta.HashDaCarta).ToList();
 
             var duasCartasEncontradas = new IdentificaDuasCartasComValoresIguais().IdentificarCartas(_listaDeCartas)

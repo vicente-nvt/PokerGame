@@ -18,11 +18,11 @@ namespace PokerGame.Testes.Jogadas
         {       
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Paus).Construir() ,
-                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Paus).Construir() ,
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir() ,
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir() ,
-                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Ouros).Construir()
+                CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Clubs).Construir() ,
+                CartaBuilder.UmaCarta().ComValor(6).ComNaipe(Naipes.Clubs).Construir() ,
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir() ,
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Hearts).Construir() ,
+                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Diamonds).Construir()
             };
 
             var identificadorDeSequencia = new IdentificaSequenciaDeCarta();
@@ -34,11 +34,11 @@ namespace PokerGame.Testes.Jogadas
         {
             var straightEsperado = new List<string>
             {
-                "3.Paus",
-                "4.Copas",
-                "5.Espadas",
-                "6.Paus",
-                "7.Ouros"
+                "3.Clubs",
+                "4.Hearts",
+                "5.Spades",
+                "6.Clubs",
+                "7.Diamonds"
             };
 
             var straightEncontrado = _straight.Encontrar(_maoDe5Cartas)
@@ -58,7 +58,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoSeNaoForUmaSequencia()
         {
-            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir();
+            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Hearts).Construir();
 
             var jogadaEncontradaNaMao = _straight.JogadaEncontradaNaMao(_maoDe5Cartas);
 

@@ -19,19 +19,19 @@ namespace PokerGame.Testes.RegrasDeDesempate
             _identificadorDeCartaMaisAlta = new IdentificaCartaMaisAlta();
             _maoA = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Espadas).Construir()
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Spades).Construir()
             };
             _maoB = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(11).ComNaipe(Naipes.Ouros).Construir()
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(11).ComNaipe(Naipes.Diamonds).Construir()
             };
         }
         [Fact]
@@ -48,7 +48,7 @@ namespace PokerGame.Testes.RegrasDeDesempate
         [Fact]
         public void NaoDeveEncontrarVencedorQuandoOsFlushsSaoIguais()
         {
-            _maoB[4] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir();
+            _maoB[4] = CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Diamonds).Construir();
 
             var jogadaEncontrada = new DesempateDeFlush(_identificadorDeCartaMaisAlta).Desempatar(_maoA, _maoB);
 

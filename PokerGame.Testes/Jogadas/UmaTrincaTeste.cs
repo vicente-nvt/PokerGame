@@ -18,11 +18,11 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(14).ComNaipe(Naipes.Hearts).Construir()
             };
             var identificadorDeTresCartasComValoresIguais = new IdentificaTresCartasComValoresIguais();
             _umaTrinca = new UmaTrinca(identificadorDeTresCartasComValoresIguais);
@@ -33,9 +33,9 @@ namespace PokerGame.Testes.Jogadas
         {
             var trincaEsperada = new List<string>
             {
-                "5.Paus",
-                "5.Copas",
-                "5.Ouros"
+                "5.Clubs",
+                "5.Hearts",
+                "5.Diamonds"
             };
 
             var trincaEncontrada = _umaTrinca.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
@@ -54,7 +54,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverTrinca()
         {
-            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
+            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Hearts).Construir();
 
             var jogadaEncontradaNaMao = _umaTrinca.JogadaEncontradaNaMao(_maoDe5Cartas);
 

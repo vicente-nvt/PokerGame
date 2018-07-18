@@ -17,11 +17,11 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Paus).Construir()
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Clubs).Construir()
             };
 
             var identificadorDePar = new IdentificaDuasCartasComValoresIguais();
@@ -32,7 +32,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarUmFullHouseNaMao()
         {
-            var fullHouseEsperado = new List<string> {"1.Copas", "1.Ouros", "1.Espadas", "2.Espadas", "2.Paus"};
+            var fullHouseEsperado = new List<string> {"1.Hearts", "1.Diamonds", "1.Spades", "2.Spades", "2.Clubs"};
 
             var fullHouseEncontrado = _fullHouse.Encontrar(_maoDe5Cartas).Select(carta => carta.HashDaCarta).ToList();
             
@@ -50,7 +50,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoQuandoNaoTiverUmaTrinca()
         {
-            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
+            _maoDe5Cartas[0] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Hearts).Construir();
 
             var jogadaEncontradaNaMao = _fullHouse.JogadaEncontradaNaMao(_maoDe5Cartas);
 
@@ -60,7 +60,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoQuandoNaoTiverUmPar()
         {
-            _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Copas).Construir();
+            _maoDe5Cartas[1] = CartaBuilder.UmaCarta().ComValor(3).ComNaipe(Naipes.Hearts).Construir();
 
             var jogadaEncontradaNaMao = _fullHouse.JogadaEncontradaNaMao(_maoDe5Cartas); 
 

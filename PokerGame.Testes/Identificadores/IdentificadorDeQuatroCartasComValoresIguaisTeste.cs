@@ -17,11 +17,11 @@ namespace PokerGame.Testes.Identificadores
         {
             _listaDeCartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Paus).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Clubs).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(4).ComNaipe(Naipes.Hearts).Construir()
             };
         }
 
@@ -30,10 +30,10 @@ namespace PokerGame.Testes.Identificadores
         {
             var quatroCartasEsperadas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Paus).Construir()
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(10).ComNaipe(Naipes.Clubs).Construir()
             }.Select(carta => carta.Valor).ToList();
 
             var quatroCartasEncontradas = new IdentificaQuatroCartasComValoresIguais().IdentificarCartas(_listaDeCartas).
@@ -45,7 +45,7 @@ namespace PokerGame.Testes.Identificadores
         [Fact]
         public void NaoDeveIdentificarSeNaoHouverQuatroCartasComValorIgual()
         {
-            _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir();
+            _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Spades).Construir();
 
             var quadraEncontrada = new IdentificaQuatroCartasComValoresIguais().IdentificarCartas(_listaDeCartas);
 

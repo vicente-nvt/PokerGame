@@ -21,25 +21,25 @@ namespace PokerGame.Dominio.RegrasDeDesempate
             var parDaMaoA = _identificadorDePar.IdentificarCartas(maoA);
             var parDaMaoB = _identificadorDePar.IdentificarCartas(maoB);
 
-            var restanteDaMaoA = maoA.Where(carta => !parDaMaoA.Contains(carta)).ToList();
-            var restanteDaMaoB = maoB.Where(carta => !parDaMaoB.Contains(carta)).ToList();
-
             if (parDaMaoA.First().Valor != parDaMaoB.First().Valor)
                 return parDaMaoA.First().Valor > parDaMaoB.First().Valor ? maoA : maoB;
+
+            var restanteDaMaoA = maoA.Where(carta => !parDaMaoA.Contains(carta)).ToList();
+            var restanteDaMaoB = maoB.Where(carta => !parDaMaoB.Contains(carta)).ToList();
 
             Carta cartaMaisAltaDaMaoA;
             Carta cartaMaisAltaDaMaoB;
 
             do
             {
+                if (restanteDaMaoA.Count == 0 || restanteDaMaoB.Count == 0)
+                    return new List<Carta>();
+
                 cartaMaisAltaDaMaoA = _identificadorDeCartaMaisAlta.IdentificarCartas(restanteDaMaoA).First();
                 cartaMaisAltaDaMaoB = _identificadorDeCartaMaisAlta.IdentificarCartas(restanteDaMaoB).First();
 
                 restanteDaMaoA.Remove(cartaMaisAltaDaMaoA);
                 restanteDaMaoB.Remove(cartaMaisAltaDaMaoB);
-
-                if (restanteDaMaoA.Count == 0 || restanteDaMaoB.Count == 0)
-                    return new List<Carta>();
 
             } while (cartaMaisAltaDaMaoB.Valor == cartaMaisAltaDaMaoA.Valor);
 

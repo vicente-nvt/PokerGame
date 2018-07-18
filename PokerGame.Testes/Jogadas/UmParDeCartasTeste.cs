@@ -18,11 +18,11 @@ namespace PokerGame.Testes.Jogadas
         {
             _maoDe5Cartas = new List<Carta>
             {
-                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Copas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Espadas).Construir(),
-                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Ouros).Construir(),
-                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Copas).Construir()
+                CartaBuilder.UmaCarta().ComValor(1).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(2).ComNaipe(Naipes.Hearts).Construir(),
+                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Spades).Construir(),
+                CartaBuilder.UmaCarta().ComValor(7).ComNaipe(Naipes.Diamonds).Construir(),
+                CartaBuilder.UmaCarta().ComValor(9).ComNaipe(Naipes.Hearts).Construir()
             };
             var identificadorDePar = new IdentificaDuasCartasComValoresIguais();
             _umParDeCartas = new UmParDeCartas(identificadorDePar);
@@ -31,7 +31,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void DeveEncontrarUmParDeCartasNaMao()
         {
-            var parEsperado = new[] { "7.Espadas", "7.Ouros" };
+            var parEsperado = new[] { "7.Spades", "7.Diamonds" };
 
             var parEncontrado = _umParDeCartas.Encontrar(_maoDe5Cartas)
                 .Select(carta => carta.HashDaCarta);
@@ -50,7 +50,7 @@ namespace PokerGame.Testes.Jogadas
         [Fact]
         public void NaoDeveEncontrarAJogadaNaMaoSeNaoHouverUmPar()
         {
-            _maoDe5Cartas[3] = CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Ouros).Construir();
+            _maoDe5Cartas[3] = CartaBuilder.UmaCarta().ComValor(8).ComNaipe(Naipes.Diamonds).Construir();
 
             var jogadaEncontradaNaMao = _umParDeCartas.JogadaEncontradaNaMao(_maoDe5Cartas);
 
