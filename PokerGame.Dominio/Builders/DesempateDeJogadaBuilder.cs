@@ -1,5 +1,6 @@
-﻿using PokerGame.Dominio.Identificadores;
-using PokerGame.Dominio.RegrasDeDesempate;
+﻿using PokerGame.Dominio.Business;
+using PokerGame.Dominio.Business.RegrasDeDesempate;
+using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Builders
 {

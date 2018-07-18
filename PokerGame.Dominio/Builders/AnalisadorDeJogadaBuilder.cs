@@ -1,4 +1,5 @@
-﻿using PokerGame.Dominio.Conversores;
+﻿using PokerGame.Dominio.Business;
+using PokerGame.Dominio.Conversores;
 using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Builders
