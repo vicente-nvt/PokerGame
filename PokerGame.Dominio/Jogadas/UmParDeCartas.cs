@@ -13,9 +13,9 @@ namespace PokerGame.Dominio.Jogadas
             _identificadorDePar = identificadorDePar;            
         }
 
-        public List<Carta> Encontrar(List<Carta> maoDe5Cartas) => _identificadorDePar.IdentificarCartas(maoDe5Cartas);
+        public IEnumerable<Carta> Encontrar(IEnumerable<Carta> maoDe5Cartas) => _identificadorDePar.IdentificarCartas(maoDe5Cartas);
 
-        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 2;
+        public bool JogadaEncontradaNaMao(IEnumerable<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count() == 2;
 
         public string Nome => "Um Par de Cartas";
 

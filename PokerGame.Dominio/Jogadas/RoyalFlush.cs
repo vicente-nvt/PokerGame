@@ -16,7 +16,7 @@ namespace PokerGame.Dominio.Jogadas
             _identificadorDeNaipesIguais = identificadorDeNaipesIguais;
         }
 
-        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
+        public IEnumerable<Carta> Encontrar(IEnumerable<Carta> maoDe5Cartas)
         {
             var cartasDoMesmoNaipe = _identificadorDeNaipesIguais.IdentificarCartas(maoDe5Cartas);
             var sequenciaDeCartas = _identificadorDeSequencia.IdentificarCartas(cartasDoMesmoNaipe);
@@ -28,7 +28,7 @@ namespace PokerGame.Dominio.Jogadas
             return primeiraCartaEhUmDez ? sequenciaDeCartas : new List<Carta>();
         }
 
-        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 5;
+        public bool JogadaEncontradaNaMao(IEnumerable<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count() == 5;
 
         public string Nome => "Royal Flush";
 

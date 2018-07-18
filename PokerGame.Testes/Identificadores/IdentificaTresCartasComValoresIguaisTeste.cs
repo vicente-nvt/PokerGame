@@ -9,8 +9,8 @@ namespace PokerGame.Testes.Identificadores
 {
     public class IdentificaTresCartasComValoresIguaisTeste
     {
-        private IList<Carta> _listaDeCartas;
-        private List<Carta> _tresCartasEsperadas;
+        private readonly IList<Carta> _listaDeCartas;
+        private readonly List<Carta> _tresCartasEsperadas;
 
         public IdentificaTresCartasComValoresIguaisTeste()
         {

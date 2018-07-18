@@ -11,7 +11,6 @@ namespace PokerGame.Testes.Jogadas
     public class UmaTrincaTeste
     {
         private readonly List<Carta> _maoDe5Cartas;
-        private readonly IIDentificadorDeCartas _identificadorDeTresCartasComValoresIguais;
         private readonly IJogada _umaTrinca;
 
         public UmaTrincaTeste()

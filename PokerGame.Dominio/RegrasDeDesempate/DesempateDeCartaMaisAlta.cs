@@ -13,7 +13,7 @@ namespace PokerGame.Dominio.RegrasDeDesempate
             _identificadorDeCartaMaisAlta = identificadorDeCartaMaisAlta;
         }
 
-        public List<Carta> Desempatar(List<Carta> maoA, List<Carta> maoB)
+        public IEnumerable<Carta> Desempatar(IEnumerable<Carta> maoA, IEnumerable<Carta> maoB)
         {
             var cartaMaisAltaDaMaoA = _identificadorDeCartaMaisAlta.IdentificarCartas(maoA).First();
             var cartaMaisAltaDaMaoB = _identificadorDeCartaMaisAlta.IdentificarCartas(maoB).First();

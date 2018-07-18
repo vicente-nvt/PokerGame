@@ -29,7 +29,7 @@ namespace PokerGame.Dominio.RegrasDeDesempate
             };
         }
 
-        public List<Carta> Desempatar(Jogada jogada, List<Carta> maoA, List<Carta> maoB)
+        public IEnumerable<Carta> Desempatar(Jogada jogada, IEnumerable<Carta> maoA, IEnumerable<Carta> maoB)
         {
             return _dicionarioDeDesempate[jogada].Desempatar(maoA, maoB);
         }

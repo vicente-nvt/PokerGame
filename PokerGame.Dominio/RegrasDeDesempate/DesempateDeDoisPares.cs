@@ -13,7 +13,7 @@ namespace PokerGame.Dominio.RegrasDeDesempate
             _identificadorDePar = identificadorDePar;
         }
 
-        public List<Carta> Desempatar(List<Carta> maoA, List<Carta> maoB)
+        public IEnumerable<Carta> Desempatar(IEnumerable<Carta> maoA, IEnumerable<Carta> maoB)
         {
             var umParDaMaoA = _identificadorDePar.IdentificarCartas(maoA);
             var restanteDaMaoA = maoA.Where(carta => !umParDaMaoA.Contains(carta)).ToList();

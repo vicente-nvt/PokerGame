@@ -1,4 +1,5 @@
 ﻿using PokerGame.Dominio;
+using PokerGame.Dominio.Builders;
 using PokerGame.Dominio.Conversores;
 using PokerGame.Dominio.Identificadores;
 using Xunit;
@@ -27,7 +28,9 @@ namespace PokerGame.Testes
             var conversorDeNaipes = new ConversorDeNaipe();
             var conversorDeValorDeCarta = new ConversorDeValorDeCarta();
             var conversorDeCarta = new ConversorDeCarta(conversorDeValorDeCarta, conversorDeNaipes);
-            _conversorDeMaoDe5Cartas = new ConversorDeMaoDe5Cartas(conversorDeCarta);
+            _conversorDeMaoDe5Cartas = ConversorDeMaoDe5CartasBuilder.UmConversor()
+                .ComConversorDeCartas(conversorDeCarta)
+                .Construir();
         }
 
         [Theory]

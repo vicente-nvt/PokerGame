@@ -5,6 +5,6 @@ namespace PokerGame.Dominio
 {
     public interface IAnalisadorDeJogada
     {
-        IJogada Analisar(List<Carta> maoDeCartas);
+        IJogada Analisar(IEnumerable<Carta> maoDeCartas);
     }
 }

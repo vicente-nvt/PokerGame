@@ -25,9 +25,10 @@ namespace PokerGame.Testes.Conversores
                 .ComConversorDeValorDeCarta(new ConversorDeValorDeCarta())
                 .ComConversorDeNaipe(new ConversorDeNaipe())
                 .Construir();
+            var conversorDeMaoDe5Cartas = ConversorDeMaoDe5CartasBuilder.UmConversor()
+                .ComConversorDeCartas(conversorDeCarta).Construir();
 
-            var maoDe5CartasConvertida = new ConversorDeMaoDe5Cartas(conversorDeCarta)
-                .Converter(maoDe5Cartas)
+            var maoDe5CartasConvertida = conversorDeMaoDe5Cartas.Converter(maoDe5Cartas)
                 .Select(cartas => cartas.HashDaCarta);
                                     
             Assert.Equal(maoDe5CartasEsperada, maoDe5CartasConvertida);

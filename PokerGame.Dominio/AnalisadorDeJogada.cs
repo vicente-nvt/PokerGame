@@ -31,7 +31,7 @@ namespace PokerGame.Dominio
             };
         }
 
-        public IJogada Analisar(List<Carta> maoDeCartas) =>
+        public IJogada Analisar(IEnumerable<Carta> maoDeCartas) =>
             _listaDeJogadas.FirstOrDefault(jogada => jogada.JogadaEncontradaNaMao(maoDeCartas));
 
     }

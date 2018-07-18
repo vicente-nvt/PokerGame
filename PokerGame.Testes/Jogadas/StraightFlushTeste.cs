@@ -10,7 +10,7 @@ namespace PokerGame.Testes.Jogadas
 {
     public class StraightFlushTeste
     {
-        private List<Carta> _maoDe5Cartas;
+        private readonly List<Carta> _maoDe5Cartas;
         private readonly IJogada _straightFlush;
 
         public StraightFlushTeste()

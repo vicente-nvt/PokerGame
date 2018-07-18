@@ -13,7 +13,7 @@ namespace PokerGame.Dominio.Jogadas
             _identificadorDeTresCartasComValoresIguais = identificadorDeTresCartasComValoresIguais;
         }
 
-        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
+        public IEnumerable<Carta> Encontrar(IEnumerable<Carta> maoDe5Cartas)
         {            
             var trinca = _identificadorDeTresCartasComValoresIguais.IdentificarCartas(maoDe5Cartas);
             var aMaoPossuiUmaTrinca = trinca.Count() == 3;                        
@@ -21,7 +21,7 @@ namespace PokerGame.Dominio.Jogadas
             return aMaoPossuiUmaTrinca ? trinca : new List<Carta>();
         }
 
-        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 3;
+        public bool JogadaEncontradaNaMao(IEnumerable<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count() == 3;
 
         public string Nome => "Uma Trinca";
 

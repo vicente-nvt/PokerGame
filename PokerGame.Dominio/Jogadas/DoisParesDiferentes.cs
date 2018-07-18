@@ -6,14 +6,14 @@ namespace PokerGame.Dominio.Jogadas
 {
     public class DoisParesDiferentes : IJogada
     {
-        private IIDentificadorDeCartas _identificadorDePares;
+        private readonly IIDentificadorDeCartas _identificadorDePares;
 
         public DoisParesDiferentes(IIDentificadorDeCartas identificadorDePares)
         {
             _identificadorDePares = identificadorDePares;
         }
 
-        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
+        public IEnumerable<Carta> Encontrar(IEnumerable<Carta> maoDe5Cartas)
         {
             var umPar = _identificadorDePares.IdentificarCartas(maoDe5Cartas);
             var restanteDaMao = maoDe5Cartas.Where(carta => !umPar.Contains(carta)).ToList();
@@ -31,7 +31,7 @@ namespace PokerGame.Dominio.Jogadas
             return doisPares;
         }
 
-        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 4;
+        public bool JogadaEncontradaNaMao(IEnumerable<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count() == 4;
 
         public string Nome => "Dois Pares";
         public int PontuacaoDaJogada => (int) Jogada;

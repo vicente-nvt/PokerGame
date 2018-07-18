@@ -10,8 +10,8 @@ namespace PokerGame.Testes.Jogadas
 {
     public class FullHouseTeste
     {
-        private List<Carta> _maoDe5Cartas;
-        private IJogada _fullHouse;
+        private readonly List<Carta> _maoDe5Cartas;
+        private readonly IJogada _fullHouse;
 
         public FullHouseTeste()
         {

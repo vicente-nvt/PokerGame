@@ -12,7 +12,7 @@ namespace PokerGame.Testes.RegrasDeDesempate
     {
         private readonly IIDentificadorDeCartas _identificadorDePar;
         private List<Carta> _maoA;
-        public List<Carta> _maoB;
+        private readonly List<Carta> _maoB;
 
         public DesempateDeDoisParesTeste()
         {

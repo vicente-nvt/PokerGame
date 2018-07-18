@@ -12,12 +12,12 @@ namespace PokerGame.Dominio.Jogadas
             _identificadorDeCartaMaisAlta = identificadorDeCartaMaisAlta;
         }
 
-        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
+        public IEnumerable<Carta> Encontrar(IEnumerable<Carta> maoDe5Cartas)
         {
             return _identificadorDeCartaMaisAlta.IdentificarCartas(maoDe5Cartas);
         }
 
-        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas) != null;
+        public bool JogadaEncontradaNaMao(IEnumerable<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas) != null;
 
         public string Nome => "Carta Mais Alta";
         public int PontuacaoDaJogada => (int) Jogada;

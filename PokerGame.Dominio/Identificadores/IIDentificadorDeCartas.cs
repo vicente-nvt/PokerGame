@@ -4,6 +4,6 @@ namespace PokerGame.Dominio.Identificadores
 {
     public interface IIDentificadorDeCartas
     {
-        List<Carta> IdentificarCartas(IList<Carta> listaDeCartas);
+        List<Carta> IdentificarCartas(IEnumerable<Carta> listaDeCartas);
     }
 }

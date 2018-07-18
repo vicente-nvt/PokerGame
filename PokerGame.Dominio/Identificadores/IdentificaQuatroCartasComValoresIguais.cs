@@ -5,7 +5,7 @@ namespace PokerGame.Dominio.Identificadores
 {
     public class IdentificaQuatroCartasComValoresIguais : IIDentificadorDeCartas
     {
-        public List<Carta> IdentificarCartas(IList<Carta> listaDeCartas)
+        public List<Carta> IdentificarCartas(IEnumerable<Carta> listaDeCartas)
         {
             var quadra = new List<Carta>();
 

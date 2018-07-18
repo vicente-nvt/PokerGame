@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PokerGame.Dominio.Identificadores;
 
 namespace PokerGame.Dominio.Jogadas
@@ -15,7 +16,7 @@ namespace PokerGame.Dominio.Jogadas
             _identificadorDeSequencia = identificadorDeSequencia;            
         }
 
-        public List<Carta> Encontrar(List<Carta> maoDe5Cartas)
+        public IEnumerable<Carta> Encontrar(IEnumerable<Carta> maoDe5Cartas)
         {
             var flush = _identificadorDeNaipesIguais.IdentificarCartas(maoDe5Cartas);
             var straightFlush = _identificadorDeSequencia.IdentificarCartas(flush);
@@ -25,7 +26,7 @@ namespace PokerGame.Dominio.Jogadas
             return encontrouUmStraightFlushValido ? straightFlush : new List<Carta>();
         }
 
-        public bool JogadaEncontradaNaMao(List<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count == 5;
+        public bool JogadaEncontradaNaMao(IEnumerable<Carta> maoDe5Cartas) => Encontrar(maoDe5Cartas).Count() == 5;
 
         public string Nome => "Straight Flush";
 

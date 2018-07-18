@@ -10,8 +10,7 @@ namespace PokerGame.Testes.Jogadas
 {
     public class StraightTeste
     {
-        private List<Carta> _maoDe5Cartas;
-        private IIDentificadorDeCartas _identificadorDeSequencia;
+        private readonly List<Carta> _maoDe5Cartas;
         private readonly IJogada _straight;
 
         public StraightTeste()

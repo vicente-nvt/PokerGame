@@ -21,7 +21,9 @@ namespace PokerGame.Testes
                 .ComConversorDeNaipe(conversorDeNaipe)
                 .ComConversorDeValorDeCarta(conversorDeValorDeCarta)
                 .Construir();
-            _conversorDeMao = new ConversorDeMaoDe5Cartas(conversorDeCarta);
+            _conversorDeMao = ConversorDeMaoDe5CartasBuilder.UmConversor()
+                .ComConversorDeCartas(conversorDeCarta)
+                .Construir();
             _analisadorDeJogada = AnalisadorDeJogadaBuilder.UmAnalisador()
                 .ComIdentificadorDeCartaMaisAltaDefinido()
                 .ComIdentificadorDeParDefinido()
@@ -48,8 +50,8 @@ namespace PokerGame.Testes
 
         public void DeveDeterminarJogadorVencedor(string maoA, string maoB, string resultadoEsperado)
         {
-            var jogadorA = new Jogador("JogadorA", maoA);
-            var jogadorB = new Jogador("JogadorB", maoB);
+            var jogadorA = new Jogador("JogadorA", _conversorDeMao.Converter(maoA));
+            var jogadorB = new Jogador("JogadorB", _conversorDeMao.Converter(maoB));
 
             var jogadorVencedorEncontrado =
                 new DeterminaVencedor(_conversorDeMao, _analisadorDeJogada, _desempatadorDeJogada)

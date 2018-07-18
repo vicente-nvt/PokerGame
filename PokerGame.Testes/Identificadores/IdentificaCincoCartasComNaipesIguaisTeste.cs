@@ -8,7 +8,7 @@ namespace PokerGame.Testes.Identificadores
 {
     public class IdentificaCincoCartasComNaipesIguaisTeste
     {
-        private IList<Carta> _listaDeCartas;
+        private readonly IList<Carta> _listaDeCartas;
 
         public IdentificaCincoCartasComNaipesIguaisTeste()
         {

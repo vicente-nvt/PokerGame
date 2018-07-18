@@ -4,7 +4,7 @@ namespace PokerGame.Dominio.RegrasDeDesempate
 {
     public class DesempateDeRoyalFlush : IRegraDeDesempate
     {
-        public List<Carta> Desempatar(List<Carta> maoA, List<Carta> maoB)
+        public IEnumerable<Carta> Desempatar(IEnumerable<Carta> maoA, IEnumerable<Carta> maoB)
         {
             return new List<Carta>();
         }

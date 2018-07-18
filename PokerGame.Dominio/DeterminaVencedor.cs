@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using PokerGame.Dominio.Conversores;
 using PokerGame.Dominio.RegrasDeDesempate;
 
@@ -20,29 +21,25 @@ namespace PokerGame.Dominio
         }
 
         public string Determinar(Jogador jogadorA, Jogador jogadorB)
-        {
-            var maoJogadorA = _conversorDeMaoDe5Cartas.Converter(jogadorA.Mao);
-            var jogadaJogadorA = _analisadorDeJogada.Analisar(maoJogadorA);
-
-            var maoJogadorB = _conversorDeMaoDe5Cartas.Converter(jogadorB.Mao);
-            var jogadaJogadorB = _analisadorDeJogada.Analisar(maoJogadorB);
+        {            
+            var jogadaJogadorA = _analisadorDeJogada.Analisar(jogadorA.Mao);            
+            var jogadaJogadorB = _analisadorDeJogada.Analisar(jogadorB.Mao);
 
             if (jogadaJogadorA.Jogada != jogadaJogadorB.Jogada)
                 return jogadaJogadorA.PontuacaoDaJogada > jogadaJogadorB.PontuacaoDaJogada ? jogadorA.Nome : jogadorB.Nome;
 
-            return Desempatar(jogadorA, jogadorB, maoJogadorA, jogadaJogadorA, maoJogadorB);
+            return Desempatar(jogadorA, jogadorB, jogadaJogadorA);
         }
 
-        private string Desempatar(Jogador jogadorA, Jogador jogadorB, List<Carta> maoJogadorA, Jogadas.IJogada jogadaJogadorA, 
-            List<Carta> maoJogadorB)
+        private string Desempatar(Jogador jogadorA, Jogador jogadorB, Jogadas.IJogada jogada)        
         {
             var maoVencedoraNoDesempate =
-                _desempateDeJogada.Desempatar(jogadaJogadorA.Jogada, maoJogadorA, maoJogadorB);
+                _desempateDeJogada.Desempatar(jogada.Jogada, jogadorA.Mao, jogadorB.Mao);
 
-            if (maoVencedoraNoDesempate.Count == 0)
+            if (!maoVencedoraNoDesempate.Any())
                 return "Empate";
 
-            return maoVencedoraNoDesempate.Equals(maoJogadorA) ? jogadorA.Nome : jogadorB.Nome;
+            return maoVencedoraNoDesempate.Equals(jogadorA.Mao) ? jogadorA.Nome : jogadorB.Nome;
         }
     }
 }

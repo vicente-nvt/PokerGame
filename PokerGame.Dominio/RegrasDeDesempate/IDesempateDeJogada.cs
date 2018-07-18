@@ -5,6 +5,6 @@ namespace PokerGame.Dominio.RegrasDeDesempate
 {
     public interface IDesempateDeJogada
     {
-        List<Carta> Desempatar(Jogada jogada, List<Carta> maoA, List<Carta> maoB);
+        IEnumerable<Carta> Desempatar(Jogada jogada, IEnumerable<Carta> maoA, IEnumerable<Carta> maoB);
     }
 }

@@ -5,7 +5,7 @@ namespace PokerGame.Dominio.Identificadores
 {
     public class IdentificaSequenciaDeCarta : IIDentificadorDeCartas
     {
-        public List<Carta> IdentificarCartas(IList<Carta> listaDeCartas)
+        public List<Carta> IdentificarCartas(IEnumerable<Carta> listaDeCartas)
         {
             var listaDeCartasOrdenadasPorValor = listaDeCartas.OrderBy(carta => carta.Valor).ToList();
             var sequenciaQuebrada = false;

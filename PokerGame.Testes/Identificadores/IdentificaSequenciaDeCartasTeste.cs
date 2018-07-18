@@ -9,7 +9,7 @@ namespace PokerGame.Testes.Identificadores
 {
     public class IdentificaSequenciaDeCartasTeste
     {
-        private IList<Carta> _listaDeCartas;
+        private readonly IList<Carta> _listaDeCartas;
 
         public IdentificaSequenciaDeCartasTeste()
         {

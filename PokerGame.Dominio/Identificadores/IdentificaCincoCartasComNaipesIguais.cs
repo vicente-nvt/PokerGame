@@ -5,7 +5,7 @@ namespace PokerGame.Dominio.Identificadores
 {
     public class IdentificaCincoCartasComNaipesIguais : IIDentificadorDeCartas
     {
-        public List<Carta> IdentificarCartas(IList<Carta> listaDeCartas)
+        public List<Carta> IdentificarCartas(IEnumerable<Carta> listaDeCartas)
         {
             var listaDeNaipesNaMao = listaDeCartas.Select(carta => carta.Naipe).ToList().Distinct();        
             var contemMaisDeUmNaipeNaMao = listaDeNaipesNaMao.Count() > 1;
