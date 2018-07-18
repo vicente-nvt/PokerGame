@@ -9,7 +9,7 @@ namespace PokerGame.Testes.Conversores
     {
         [Theory]
         [InlineData("5S", 5, Naipes.Espadas )]  
-        [InlineData("10D", 10, Naipes.Ouros)]
+        [InlineData("TD", 10, Naipes.Ouros)]
         [InlineData("AH", 14, Naipes.Copas)]        
         public void DeveConverterUmaCartaValida(string cartaDeEntrada, int valor, Naipes naipe)
         {

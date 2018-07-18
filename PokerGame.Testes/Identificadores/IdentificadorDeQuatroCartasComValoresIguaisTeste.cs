@@ -43,11 +43,11 @@ namespace PokerGame.Testes.Identificadores
         }
 
         [Fact]
-        public void NaoDeveIndetificarSeNaoHouverQuatroCartasComValorIgual()
+        public void NaoDeveIdentificarSeNaoHouverQuatroCartasComValorIgual()
         {
             _listaDeCartas[0] = CartaBuilder.UmaCarta().ComValor(5).ComNaipe(Naipes.Espadas).Construir();
 
-            var quadraEncontrada = new IdentificaCincoCartasComNaipesIguais().IdentificarCartas(_listaDeCartas);
+            var quadraEncontrada = new IdentificaQuatroCartasComValoresIguais().IdentificarCartas(_listaDeCartas);
 
             Assert.Empty(quadraEncontrada);
         }

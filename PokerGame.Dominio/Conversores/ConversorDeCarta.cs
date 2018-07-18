@@ -20,9 +20,9 @@ namespace PokerGame.Dominio.Conversores
             return new Carta(valor, naipe);
         }
 
-        private static string ObterNaipeDaCarta(string cartaDeEntrada) => cartaDeEntrada.Substring(cartaDeEntrada.Length == 3 ? 2 : 1, 1);
+        private static string ObterNaipeDaCarta(string cartaDeEntrada) => cartaDeEntrada.Substring(1, 1);
         
-        private static string ObterValorDaCarta(string cartaDeEntrada) => cartaDeEntrada.Substring(0, cartaDeEntrada.Length == 3 ? 2 : 1);
+        private static string ObterValorDaCarta(string cartaDeEntrada) => cartaDeEntrada.Substring(0, 1);
 
     }
 }

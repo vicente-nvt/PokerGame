@@ -40,7 +40,7 @@ namespace PokerGame.Testes
         [InlineData("6D 6S QS QH QC", "Full House")]
         [InlineData("4D 4S 4H QH 4C", "Quadra")]
         [InlineData("4D 5D 6D 7D 8D", "Straight Flush")]
-        [InlineData("10S TS QS KS AS", "Royal Flush")]        
+        [InlineData("TS JS QS KS AS", "Royal Flush")]        
         public void DeveIdentificarAJogadaDaMao(string mao, string nomeDaJogadaEsperada)
         {
             var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
@@ -62,7 +62,7 @@ namespace PokerGame.Testes
         [InlineData("6D 6S QS QH QC", 106)]
         [InlineData("4D 4S 4H QH 4C", 107)]
         [InlineData("4D 5D 6D 7D 8D", 108)]
-        [InlineData("10S TS QS KS AS", 109)]
+        [InlineData("TS JS QS KS AS", 109)]
         public void DeveValidarAPontuacaoDaJogadaDaMao(string mao, int pontuacaoDaJogadaEsperada)
         {
             var maoDeCartas = _conversorDeMaoDe5Cartas.Converter(mao);
